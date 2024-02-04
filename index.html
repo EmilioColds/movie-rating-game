@@ -3,9 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Rating Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./Assets/styles.css" rel="stylesheet">
 </head>
 <body>
+    <header class="bg-blue-800 text-white p-4"> 
+        <button id="highscores-button" class="bg-blue-500 text-white"> Highscores </button>
+    </header>
+    <main class=""container mx-auto p-4>
+        <section id="home-page"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+            <div id="home-page-title">
+                <i class="fa fa-film"></i>
+                <h1> Movie Rating Game </h1>
+            </div>
+            <div class="container" id="game-selectors">
+                <h2> Select your category! </h2>
+                <div class="row" id="category-row">
+                    <div class="game-image" id="category1">
+                        <img src="" alt="Category 1"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 1 </p>
+                    </div>
+                    <div class="game-image" id="category2">
+                        <img src="" alt="Category 1"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 2 </p>
+                    </div>
+                    <div class="game-image" id="category3">
+                        <img src="" alt="Category 1"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 3 </p>
+                    </div>
+                    <div class="game-image" id="category4">
+                        <img src="" alt="Category 1"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 4 </p>
+                    </div>
+                    <div class="game-image" id="category5">
+                        <img src="" alt="Category 1"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 5 </p>
+                    </div>
+                </div>
+                <h2> And now, select the type of game! </h2>
+                <div class="row" id="game-type-row">
+                    <div class="game-image" id="rating-type">
+                        <img src="./Assets/Images/rating-icon.png" alt="Rating"> 
+                        <p> Movie Rating </p>
+                    </div>  
+                    <div class="game-image" id="boxoffice-type">
+                        <img src="./Assets/Images/boxoffice-icon.png" alt="Box Office"> 
+                        <p> Box Office </p>
+                    </div> 
+                </div>
+            </div>
+            <button id="start-button" class="bg-green-600 text-white"> Start Game </button>
+        </section>
+        <section id="game-page">
+
+        </section>
+        <section id="watchlist-page">
+
+        </section>
+        <section id="highscores-page">
+
+        </section>
+    </main>
+
     
+    <script src="./Assets/script.js"></script>
 </body>
 </html>
