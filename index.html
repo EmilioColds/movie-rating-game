@@ -3,9 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Rating Game</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="./Assets/styles.css" rel="stylesheet">
 </head>
 <body>
+    <header class="bg-blue-800 text-white p-4" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
+        <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"> Highscores </button>
+    </header>
+    <main class=""container mx-auto p-4>
+
+        <section id="home-page"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+            <div id="home-page-title">
+                <i class="fa fa-film"></i>
+                <h1> Movie Rating Game </h1>
+            </div>
+            <div class="home-container" id="game-selectors">
+                <h2> Select your category! </h2>
+                <div class="row" id="category-row">
+                    <div class="game-image" id="category1">
+                        <img src="" alt="Category 1"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 1 </p>
+                    </div>
+                    <div class="game-image" id="category2">
+                        <img src="" alt="Category 2"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 2 </p>
+                    </div>
+                    <div class="game-image" id="category3">
+                        <img src="" alt="Category 3"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 3 </p>
+                    </div>
+                    <div class="game-image" id="category4">
+                        <img src="" alt="Category 4"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 4 </p>
+                    </div>
+                    <div class="game-image" id="category5">
+                        <img src="" alt="Category 5"> <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
+                        <p> Nombre de categoría 5 </p>
+                    </div>
+                </div>
+                <h2> And now, select the type of game! </h2>
+                <div class="row" id="game-type-row">
+                    <div class="game-image" id="rating-type">
+                        <img src="./Assets/Images/rating-icon.png" alt="Rating"> 
+                        <p> Movie Rating </p>
+                    </div>  
+                    <div class="game-image" id="boxoffice-type">
+                        <img src="./Assets/Images/boxoffice-icon.png" alt="Box Office"> 
+                        <p> Box Office </p>
+                    </div> 
+                </div>
+            </div>
+            <button id="start-button" class="bg-green-500 text-white mt-8 p-2 rounded"> Start Game </button>
+        </section>
+
+        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+            <div class="game-container flex justify-around items-center w-full max-w-6xl my-8">
+                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-left"> 
+                    <img src=" " alt=" " id="poster-left"> <!-- Datos e imagen generada en JavaScript -->
+                    <div class="movie-details-left text-center mt-4">
+                        <h2 class="text-2xl font-bold" id="movie-title-left"> </h2> <!-- Título generado en JavaScript -->
+                        <p class="mt-2"> has </p>
+                        <h3 class="text-xl" id="rating-boxoffice-left"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
+                        <p class="text-sm italic" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
+                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" id="watchlist-button-left"> Add to Watchlist! </button>
+                    </div>
+                </div>
+
+                <div class="text-4xl mx-10"> 
+                    <h2 class="versus-title"> VS. </h2>
+                </div>
+
+                <div class="score-container"> 
+                    <h3>Score: <span class="font-bold" id="score-counter"> </span></h3> <!-- Aumentar el score después de cada pregunta en este ID -->
+                </div>
+
+                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-right"> 
+                    <img src=" " alt=" " id="poster-right"> <!-- Datos e imagen generada en JavaScript -->
+                    <div class="movie-details-right text-center mt-4">
+                        <h2 class="text-2xl font-bold" id="movie-title-right"> </h2> <!-- Título generado en JavaScript -->
+                        <p class="mt-2"> has </p>
+                        <div id="game-buttons"> <!-- Cuando un botón sea seleccionado, esconder este div -->
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded" id="higher-button"> HIGHER </button> 
+                            <p class="mx-2 inline-block"> or </p>  
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" id="lower-button"> LOWER </button>                         
+                        </div>
+                        <h3 class="text-xl" id="rating-boxoffice-right"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
+                        <p class="text-sm italic"class="text-sm italic" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
+                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded" id="watchlist-button-right"> Add to Watchlist! </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="watchlist-page" class="container mx-auto p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+            <h2> Your final score is: <span id="score-counter"> </span></h2>
+            <div id="session-top-scores" class="my-4">
+                <h3> Top Scores </h3>
+                <ul id="session-scores-list"> </ul>
+            </div>
+
+            <div id="watchlist" class="my-4">
+                <h3> My Watchlist </h3>
+                <ul id="watchlist-elements"> </ul> <!-- Agregar a este ID el nombre de las pelis seleccionados y agregar un botón para llevar al tráiler -->
+            </div>
+            <button id="play-again-button" class="bg-green-500 text-white mt-8 p-2 rounded"> Play Again </button>
+        </section>
+
+        <section id="highscores-page" class="hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+            <h1> The Wall of Fame </h1>
+
+            <h2> Ratings </h2>
+            <div class="highscore-categories grid grid-cols-5 gap-4"> 
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 1 </h2> <!-- Cada nombre de categoría se modificará a las categorías seleccionadas -->
+                    <p class="top-score text-lg" id="top-score-1"> </p> <!-- Estos IDs se cambiarán a ser más específicos para cada categoría y aquí deberá generarse el top score de cada categoría en JavaScript -->
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 2 </h2>
+                    <p class="top-score text-lg" id="top-score-2"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 3 </h2>
+                    <p class="top-score text-lg" id="top-score-3"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 4 </h2>
+                    <p class="top-score text-lg" id="top-score-4"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 5 </h2>
+                    <p class="top-score text-lg" id="top-score-5"> </p>
+                </div>
+            </div>
+
+            <h2> Box Office </h2>
+            <div class="highscore-categories grid grid-cols-5 gap-4">
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 6 </h2>
+                    <p class="top-score text-lg" id="top-score-6"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 7 </h2>
+                    <p class="top-score text-lg" id="top-score-7"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 8 </h2>
+                    <p class="top-score text-lg" id="top-score-8"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 9 </h2>
+                    <p class="top-score text-lg" id="top-score-9"> </p>
+                </div>
+                <div class="category-item bg-gray-200 p-4 rounded">
+                    <h2 class="category-title text-xl"> Category 10 </h2>
+                    <p class="top-score text-lg" id="top-score-10"> </p>
+                </div>
+            </div>
+            <button id="play-again-button" class="bg-green-500 text-white mt-8 p-2 rounded"> Play Again </button> <!-- Mismo botón de Play Again que en Watchlist Page -->
+        </section>
+    </main>
+
     
+    <script src="./Assets/script.js"></script>
 </body>
 </html>
