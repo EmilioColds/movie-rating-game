@@ -9,12 +9,12 @@
     <link href="./Assets/styles.css" rel="stylesheet">
 </head>
 <body>
-    <header class="bg-blue-800 text-white p-4" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
+    <header class="bg-blue-800 text-white p-4 hidden" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
         <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"> Highscores </button>
     </header>
     <main class=""container mx-auto p-4>
 
-        <section id="home-page"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="home-page" class="hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <div id="home-page-title">
                 <i class="fa fa-film"></i>
                 <h1> Movie Rating Game </h1>
@@ -58,7 +58,8 @@
             <button id="start-button" class="bg-green-500 text-white mt-8 p-2 rounded"> Start Game </button>
         </section>
 
-        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+
             <div class="game-container flex justify-around items-center w-full max-w-6xl my-8">
                 <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-left"> 
                     <img src=" " alt=" " id="poster-left"> <!-- Datos e imagen generada en JavaScript -->
@@ -71,12 +72,11 @@
                     </div>
                 </div>
 
-                <div class="text-4xl mx-10"> 
-                    <h2 class="versus-title"> VS. </h2>
-                </div>
-
-                <div class="score-container"> 
-                    <h3>Score: <span class="font-bold" id="score-counter"> </span></h3> <!-- Aumentar el score después de cada pregunta en este ID -->
+                <div class="versus-section text-center"> 
+                    <h2 class="versus-title text-4xl mx-10"> VS. </h2>
+                    <div class="score-container text-white py-2 px-4 rounded">
+                        <h3>Score: <span class="font-bold text-4xl" id="score-counter"> </span></h3> <!-- Aumentar el score después de cada pregunta en este ID -->
+                    </div>
                 </div>
 
                 <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-right"> 
