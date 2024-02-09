@@ -1,7 +1,35 @@
+h1 {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+main {
+    height: auto;
+    width: auto;
+}
+
 .row {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 20px;
-    width: 70%;
+    width: auto;
+}
+
+.text-style {
+    text-align: center;
+}
+
+.fa-film {
+    padding-right: 20px;
+}
+
+.title-style {
+    height: 200px;
+}
+
+#home-page-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
