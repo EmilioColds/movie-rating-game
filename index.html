@@ -10,7 +10,7 @@
 </head>
 <body>
     <main>
-        <section id="home-page" class="bg-gray-800 min-h-screen p-4 text-white"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="home-page" class="bg-gray-800 min-h-screen p-4 text-white hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
                 <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg"> Highscores </button>
             </header>
@@ -59,40 +59,40 @@
             </div>
         </section>
 
-        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4"> <!-- Agregar class="hidden" en JavaScript a este ID -->
 
-            <div class="game-container flex justify-around items-center w-full max-w-6xl my-8">
-                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-left"> 
-                    <img src=" " alt=" " id="poster-left"> <!-- Datos e imagen generada en JavaScript -->
+            <div class="game-container flex flex-wrap justify-center items-center w-full max-w-6xl mx-auto p-4">
+                <div class="movie bg-gray-700 p-5 rounded-lg  w-full md:w-1/3 p-4 flex flex-col items-center" id="movie-container-left"> 
+                    <img src=" " alt="Left Movie Poster" id="poster-left" class="poster-style"> <!-- Datos e imagen generada en JavaScript -->
                     <div class="movie-details-left text-center mt-4">
                         <h2 class="text-2xl font-bold" id="movie-title-left"> </h2> <!-- Título generado en JavaScript -->
                         <p class="mt-2"> has </p>
-                        <h3 class="text-xl" id="rating-boxoffice-left"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
-                        <p class="text-sm italic" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
-                        <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="watchlist-button-left"> Add to Watchlist! </button>
+                        <h3 class="text-2xl font-bold mt-2 mb-2" id="rating-boxoffice-left"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
+                        <p class="mb-2" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
+                        <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="watchlist-button-left"> Add to Watchlist! </button>
                     </div>
                 </div>
 
-                <div class="versus-section text-center"> 
+                <div class="versus-section text-center mt-6 mb-6 w-full md:w-auto"> 
                     <h2 class="versus-title text-4xl mx-10"> VS. </h2>
-                    <div class="score-container text-white py-2 px-4 rounded">
-                        <h3>Score: <span id="score-counter">  </span></h3> <!-- Aumentar el score después de cada pregunta en este ID -->
+                    <div class="score-container text-white py-2 px-4">
+                        <h3> Score: <span id="score-counter"> </span></h3> <!-- Aumentar el score después de cada pregunta en este ID -->
                     </div>
                 </div>
 
-                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-right"> 
-                    <img src=" " alt=" " id="poster-right"> <!-- Datos e imagen generada en JavaScript -->
+                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center w-full md:w-1/3" id="movie-container-right"> 
+                    <img src=" " alt="Right Movie Poster" id="poster-right" class="poster-style rounded-lg"> <!-- Datos e imagen generada en JavaScript -->
                     <div class="movie-details-right text-center mt-4">
                         <h2 class="text-2xl font-bold" id="movie-title-right"> </h2> <!-- Título generado en JavaScript -->
                         <p class="mt-2"> has </p>
-                        <div id="game-buttons"> <!-- Cuando un botón sea seleccionado, esconder este div -->
+                        <div id="game-buttons" class=""> <!-- Cuando un botón sea seleccionado, esconder este div -->
                             <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="higher-button"> HIGHER </button> 
                             <p class="mx-2 inline-block"> or </p>  
                             <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="lower-button"> LOWER </button>                         
                         </div>
-                        <h3 class="text-xl" id="rating-boxoffice-right"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
-                        <p class="text-sm italic"class="text-sm italic" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
-                        <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="watchlist-button-right"> Add to Watchlist! </button>
+                        <h3 class="text-2xl font-bold mt-2 mb-2" id="rating-boxoffice-right"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
+                        <p class="mb-2" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
+                        <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="watchlist-button-right"> Add to Watchlist! </button>
                     </div>
                 </div>
             </div>
