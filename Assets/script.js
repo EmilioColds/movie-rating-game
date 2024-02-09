@@ -25,3 +25,25 @@ function searchVideo(element) {
 
 // <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
 
+///////////////////////////////////////////////////////////////////////////////////
+
+// Function para que los icons de HOME PAGE se pongan en HIGHLIGHT al ser seleccionados
+
+function categorySelection(selectedElement) {
+    var pastSelection = document.querySelector('.category-selected');
+    if (pastSelection) {
+        pastSelection.classList.remove('category-selected');
+    }
+
+    selectedElement.classList.add('category-selected');
+}
+
+function typeSelection(selectedElement) {
+    var pastSelection = document.querySelector('.type-selected');
+    if (pastSelection) {
+        pastSelection.classList.remove('type-selected');
+    }
+
+    selectedElement.classList.add('type-selected');
+}
+

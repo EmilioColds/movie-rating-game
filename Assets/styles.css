@@ -16,6 +16,16 @@ main {
     width: auto;
 }
 
+.category-selected {
+    border: 2px solid #fcdf03;
+    transform: scale(1.1);
+}
+
+.type-selected {
+    border: 2px solid #fcdf03;
+    transform: scale(1.1);
+}
+
 .text-style {
     text-align: center;
 }
