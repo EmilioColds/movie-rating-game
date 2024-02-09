@@ -1,27 +1,42 @@
 
-var valueA = 100;
-var valueB = 200;
+let categorySelected = false;
+let gameTypeSelected = false;
 
-function guessHigher() {
 
-    if (valueB > valueA) {
-        alert("Correcto! ");
-    } else {
-        alert("Incorrecto.");
-    }
+function updateButtonState() {
+    const button = document.getElementById('start-game-button');
+    button.disabled = !(categorySelected && gameTypeSelected);
 }
 
-function guessLower() {
 
-    if (valueB < valueA) {
-        alert("Correcto! ");
-    } else {
-        alert("Incorrecto.");
+document.getElementById('category-row').addEventListener('click', function (event) {
+    if (event.target.closest('.game-image')) {
+        categorySelected = true;
+        updateButtonState();
     }
-}
-var higherButton = document.getElementById('higher-button');
-var lowerButton = document.getElementById('lower-button');
+});
 
 
-higherButton.addEventListener('click', guessHigher);
-lowerButton.addEventListener('click', guessLower);
+document.getElementById('game-type-row').addEventListener('click', function (event) {
+    if (event.target.closest('.game-image')) {
+        gameTypeSelected = true;
+        updateButtonState();
+    }
+});
+
+
+
+/// START BUTTON
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    var startButton = document.getElementById('start-button');
+    startButton.onclick = function () {
+        var homePage = document.getElementById('home-page');
+        var gamePage = document.getElementById('game-page');
+        homePage.style.display = 'none';
+        gamePage.style.display = 'block';
+    };
+});
+
