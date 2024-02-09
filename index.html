@@ -14,7 +14,7 @@
     </header>
     <main class=""container mx-auto p-4>
 
-        <section id="home-page"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="home-page" class="hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <div id="home-page-title">
                 <i class="fa fa-film"></i>
                 <h1> Movie Rating Game </h1>
@@ -97,7 +97,7 @@
             </div>
         </section>
 
-        <section id="watchlist-page" class="container mx-auto p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="watchlist-page" class="container mx-auto p-4 "> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <h2> Your final score is: <span id="score-counter"> </span></h2>
             <div id="session-top-scores" class="my-4">
                 <h3> Top Scores </h3>
@@ -107,7 +107,12 @@
             <div id="watchlist" class="my-4">
                 <h3> My Watchlist </h3>
                 <ul id="watchlist-elements"> </ul> <!-- Agregar a este ID el nombre de las pelis seleccionados y agregar un botón para llevar al tráiler -->
-            </div>
+
+
+                <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
+
+
+
             <button id="play-again-button" class="bg-green-500 text-white mt-8 p-2 rounded"> Play Again </button>
         </section>
 

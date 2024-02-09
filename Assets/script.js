@@ -1,50 +1,27 @@
-var YouTubeAPIKey = AIzaSyDXbp7YPyb65jrrSvvqv53H8-q1W3V9dJ8;
+const YouTubeAPIKey = "AIzaSyDXbp7YPyb65jrrSvvqv53H8-q1W3V9dJ8";
 
-//This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
- tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];//Retrives a collection of objects based on the specified element name.
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+//Searches for the Video Title in de google API
+function searchVideo(element) {
+  const searchQuery = element.textContent + " trailer"; //Defines itself depending on the text inside the <li> element onclick.
+  const url = `https://www.googleapis.com/youtube/v3/search?key=${YouTubeAPIKey}&q=${searchQuery}&part=snippet&type=video&maxResults=1`;
 
-//This function creates an <iframe> (and YouTube player), after the API code downloads.
-var player;
-
-
-
-function onYouTubeIframeAPIReady() {
-     player = new YT.Player('player', {
-       height: '390',
-       width: '640',
-       videoId: 'M7lc1UVf-VE',
-       playerVars: {
-         'playsinline': 1
-       },
-       events: {
-         'onReady': onPlayerReady,
-         'onStateChange': onPlayerStateChange
-       }
-     });
- }
-
- //The API will call this function when the video player is ready.
- function onPlayerReady(event) {
-  event.target.playVideo();
- }
-
-//The API calls this function when the player's state changes.
- //The function indicates that when playing a video (state=1),
-//the player should play for six seconds and then stop.
- var done = false;
- function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-    setTimeout(stopVideo, 6000);
-    done = true;
-    }
-}
-function stopVideo() {
-    player.stopVideo();
+  fetch(url)
+      .then(response => response.json()) //extracts the Json data from the response received form the API.
+      .then(data => {
+          if (data.items && data.items.length > 0) {
+              const videoId = data.items[0].id.videoId; //Extract the Id of the youtube video with the title of the searchQuery.
+              const videoUrl = `https://www.youtube.com/watch?v=${videoId}`; //Defines the url of the FIRST video found in the search result.
+              window.open(videoUrl); //Opens the link in a new browser window.
+          } else {
+              alert('No trailer found.');                 //CAMBIAR A ALGO FISICO GENERADO EN EL HTML!!!
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          alert('An error occurred while searching for the video.');                 //CAMBIAR A ALGO FISICO GENERADO EN EL HTML!!!
+      });
 }
 
-//https://developers.google.com/youtube/iframe_api_reference?hl=es-419 
-//    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-<p id="player">assssssssss</p>
+
+// <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
+
