@@ -59,7 +59,7 @@
             </div>
         </section>
 
-        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
 
             <div class="game-container flex flex-wrap justify-center items-center w-full max-w-6xl mx-auto p-4">
                 <div class="movie bg-gray-700 p-5 rounded-lg  w-full md:w-1/3 p-4 flex flex-col items-center" id="movie-container-left"> 
@@ -98,23 +98,34 @@
             </div>
         </section>
 
-        <section id="watchlist-page" class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="watchlist-page" class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white"> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
                 <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg"> Highscores </button>
             </header>
 
-            <h2> Your final score is: <span id="score-counter"> </span></h2>
-            <div class="row">
-                <div id="session-top-scores" class="my-4">
-                    <h3> Top Scores </h3>
-                    <ul id="session-scores-list" class="bg-gray-700 p-5 rounded-lg shadow-lg"> </ul>
+            <h2 class="text-2xl mb-6 pl-5 font-bold text-center"> Your final score is: <span id="score-counter"> 23 </span></h2>
+            <div class="row justify-center">
+                <div id="session-top-scores" class="my-4 mr-12 w-1/3">
+                    <h3 class="text-center font-bold text-2xl mb-6"> Top Scores </h3>
+                    <ul id="session-scores-list" class="bg-gray-700 p-5 rounded-lg shadow-lg"> 
+                        <li class="text-xl"> <!-- Es necesario crear H4 en esta sección para dar estilos -->
+                            <h4> Emilio- 23 </h4>
+                            <h4> Emilio- 23 </h4>
+                            <h4> Emilio- 23 </h4>
+                        </li>
+                    </ul>
                 </div>
     
-                <div id="watchlist" class="my-4">
-                    <h3> My Watchlist </h3>
+                <div id="watchlist" class="my-4 w-1/3">
+                    <h3 class="text-center font-bold text-2xl mb-6"> My Watchlist </h3>
                     <ul id="watchlist-elements" class="bg-gray-700 p-5 rounded-lg shadow-lg"> 
-            
+                        <li class="cursor-pointer text-xl underline">
+                            <h4 onclick="searchVideo(this)" > Your Name </h4>
+                            <h4 onclick="searchVideo(this)"> Gladiator </h4>
+                            <h4 onclick="searchVideo(this)"> Dune </h4>
+                        </li>
                     </ul> <!-- Agregar a este ID el nombre de las pelis seleccionados y agregar un botón para llevar al tráiler -->
+                    <h3 class="text-center mt-2"> Click any title to watch the trailer! </h3>
                 </div>
             </div>
 

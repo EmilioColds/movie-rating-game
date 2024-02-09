@@ -8,6 +8,11 @@ main {
     width: auto;
 }
 
+h4 {
+    margin: 12px 0px 12px 0px;
+    text-align: center;
+}
+
 .row {
     display: flex;
     justify-content: center;
