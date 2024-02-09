@@ -30,20 +30,23 @@ function searchVideo(element) {
 // Function para que los icons de HOME PAGE se pongan en HIGHLIGHT al ser seleccionados
 
 function categorySelection(selectedElement) {
-    var pastSelection = document.querySelector('.category-selected');
-    if (pastSelection) {
-        pastSelection.classList.remove('category-selected');
-    }
 
+    document.querySelectorAll('.category-icons').forEach(image => {
+        image.classList.remove('category-selected');
+        image.classList.add('category-unselected')
+    });
+
+    selectedElement.classList.remove('category-unselected');
     selectedElement.classList.add('category-selected');
 }
 
 function typeSelection(selectedElement) {
-    var pastSelection = document.querySelector('.type-selected');
-    if (pastSelection) {
-        pastSelection.classList.remove('type-selected');
-    }
 
+    document.querySelectorAll('.type-icons').forEach(image => {
+        image.classList.remove('type-selected');
+        image.classList.add('type-unselected')
+    });
+
+    selectedElement.classList.remove('type-unselected');
     selectedElement.classList.add('type-selected');
 }
-
