@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//YOUTUBE API TRAILER LOGIC
+
 const YouTubeAPIKey = "AIzaSyDXbp7YPyb65jrrSvvqv53H8-q1W3V9dJ8";
 
 //Searches for the Video Title in de google API
@@ -25,3 +29,32 @@ function searchVideo(element) {
 
 // <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ 
+
+const moviesAPIKey = "722da20b";
+ var movieTitleOne = "The Matrix";
+//  var movieTitleTwo = 
+
+fetch("http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + movieTitleOne)
+
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error("There was a problem with your fetch operation", error);
+    });
+
+//28,000
+
+
+function selectTwoRandomMovies() {
+
+}
