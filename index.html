@@ -10,9 +10,9 @@
 </head>
 <body>
     <main>
-        <section id="home-page" class="bg-gray-800 min-h-screen p-4 text-white hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="home-page" class="bg-gray-800 min-h-screen p-4 text-white"> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
-                <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg"> Highscores </button>
+                <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg"> Highscores </button>
             </header>
 
             <div id="home-page-title">
@@ -55,11 +55,11 @@
                 </div>
             </div>
             <div class="flex justify-center mt-8">
-                <button id="start-button" class="bg-green-500 hover:bg-green-600 text-white font-bold mt-8 p-2 rounded shadow-lg"> Start Game </button>
+                <button id="start-button" class="bg-green-500 hover:bg-green-600 text-white font-bold mt-8 py-3 px-4 rounded shadow-lg"> Start Game </button>
             </div>
         </section>
 
-        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="game-page" class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4"> <!-- Agregar class="hidden" en JavaScript a este ID -->
 
             <div class="game-container flex flex-wrap justify-center items-center w-full max-w-6xl mx-auto p-4">
                 <div class="movie bg-gray-700 p-5 rounded-lg  w-full md:w-1/3 p-4 flex flex-col items-center" id="movie-container-left"> 
@@ -69,7 +69,7 @@
                         <p class="mt-2"> has </p>
                         <h3 class="text-2xl font-bold mt-2 mb-2" id="rating-boxoffice-left"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
                         <p class="mb-2" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
-                        <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="watchlist-button-left"> Add to Watchlist! </button>
+                        <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded shadow-lg" id="watchlist-button-left"> Add to Watchlist! </button>
                     </div>
                 </div>
 
@@ -85,25 +85,25 @@
                     <div class="movie-details-right text-center mt-4">
                         <h2 class="text-2xl font-bold" id="movie-title-right"> </h2> <!-- Título generado en JavaScript -->
                         <p class="mt-2"> has </p>
-                        <div id="game-buttons" class=""> <!-- Cuando un botón sea seleccionado, esconder este div -->
-                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="higher-button"> HIGHER </button> 
+                        <div id="game-buttons" class=" "> <!-- Cuando un botón sea seleccionado, esconder este div -->
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-2 rounded shadow-lg" id="higher-button"> HIGHER </button> 
                             <p class="mx-2 inline-block"> or </p>  
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="lower-button"> LOWER </button>                         
+                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-2 rounded shadow-lg" id="lower-button"> LOWER </button>                         
                         </div>
                         <h3 class="text-2xl font-bold mt-2 mb-2" id="rating-boxoffice-right"> </h3> <!-- Rating o Boxoffice generado por JavaScript-->
                         <p class="mb-2" id="game-type"> </p> <!-- The game type the user selected (Rating / Boxoffice) -->
-                        <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded shadow-lg" id="watchlist-button-right"> Add to Watchlist! </button>
+                        <button class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded shadow-lg" id="watchlist-button-right"> Add to Watchlist! </button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="watchlist-page" class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white hidden"> <!-- Agregar class="hidden" en JavaScript a este ID -->
+        <section id="watchlist-page" class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white"> <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header"> <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
                 <button id="highscores-button" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg"> Highscores </button>
             </header>
 
-            <h2 class="text-2xl mb-6 pl-5 font-bold text-center"> Your final score is: <span id="score-counter"> 23 </span></h2>
+            <h2 class="text-2xl mb-6 pl-5 font-bold text-center"> Your final score is: <span id="score-counter"> </span></h2>
             <div class="row justify-center">
                 <div id="session-top-scores" class="my-4 mr-12 w-1/3">
                     <h3 class="text-center font-bold text-2xl mb-6"> Top Scores </h3>
@@ -126,7 +126,7 @@
             </div>
 
         <div class="flex justify-center">
-            <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-8 p-2 rounded shadow-lg"> Play Again </button>
+            <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-8 py-3 px-4 rounded shadow-lg"> Play Again </button>
         </div>
             
         </section>
@@ -158,7 +158,7 @@
                 </div>
             </div>
 
-            <h2 class="text-center font-bold text-xl mb-6 mt-6"> Box Office </h2>
+            <h2 class="text-center font-bold text-xl mb-6 mt-10"> Box Office </h2>
             <div class="highscore-categories grid grid-cols-5 gap-4">
                 <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
                     <h2 class="category-title text-xl flex text-style"> Movies before Year 2000 </h2>
@@ -182,7 +182,7 @@
                 </div>
             </div>
             <div class="flex justify-center">
-                <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-8 p-2 rounded shadow-lg"> Play Again </button> <!-- Mismo botón de Play Again que en Watchlist Page -->
+                <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-10 py-3 px-4 rounded shadow-lg"> Play Again </button> <!-- Mismo botón de Play Again que en Watchlist Page -->
             </div>
         </section>
     </main>
