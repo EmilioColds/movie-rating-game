@@ -26,7 +26,6 @@ function searchVideo(element) {
       });
 }
 
-
 // <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -52,9 +51,109 @@ fetch("http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + movieTitleOne)
         console.error("There was a problem with your fetch operation", error);
     });
 
-//28,000
+
+let movieTitles = []; //array defined by the "getAllMovieTitles()" asyncFunction ; so that it can be used constantly in the code.
+
+async function getAllMovieTitles() {
+    const apiKey = '722da20b';
+    const apiUrl = `http://www.omdbapi.com/?s=movie&apikey=` + apiKey; // Example API URL to search for movies in general.
+
+    let allMovieTitles = [];
+    let page = 1;
+
+    try {
+        while (true) {
+            const response = await fetch(apiUrl + "&page=" + page);
+            const data = await response.json();
+
+            if (data.Response === 'False') {
+                console.log('No more movies found');
+                break;
+            }
+
+            allMovieTitles.push(...data.Search.map(movie => movie.Title));
+
+            if (!data.Search || data.Search.length < 10) {
+                break;
+            }
+
+            page++;
+        }
+
+        movieTitles = allMovieTitles;
+    } catch (error) {
+        console.error('Error fetching movie data:', error);
+    };
+
+    return allMovieTitles;
+};
+
+async function getRandomMovieTitle() {
+    if (movieTitles.length === 0) {
+        console.log("Movie titles array is empty. Fetching movie titles...");
+        await getAllMovieTitles();
+    }
+    const randomIndex = Math.floor(Math.random() * movieTitles.length);
+    return movieTitles[randomIndex];
+};
+
+// Call the function to get all movie titles
+getAllMovieTitles()
+
+    .then(movieTitles => {
+        console.log('All Movie Titles:', movieTitles);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+function getRandomMovieTitle() {
+
+    if (movieTitles.length ===0) {
+        console.log("Movie titles array is still empty.");
+        return null;
+    }
+
+    const randomIndex = Math.floor(Math.random() * movieTitles.length);
+    return movieTitles[randomIndex];
+};
+
+async function fetchleftMovieDetailsAndUpdateHTML(movieTitle) {
+    const moviesAPIKey = "722da20b";
+    const apiUrl = "http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + encodeURIComponent(movieTitle);
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error("Network response was not OK");
+        }
+        const data = await response.json();
+        updateHTMLWithMovieDetailsleft(data);
+    } catch (error) {
+        console.error("There was a problem with your fetch operation", error);
+    };
+};
+
+function updateHTMLWithMovieDetailsleft(movieData) {
+    const titleElement = document.getElementById("movie-title-left");
+    titleElement.textContent = movieData.Title;
+    const boxOfficeElement = document.getElementById("rating-boxoffice-left");
+    boxOfficeElement.textContent = movieData.Metascore;
+};
 
 
-function selectTwoRandomMovies() {
+function randomMovieButtonClick() {
+    const randomMovieTitle = getRandomMovieTitle();
 
-}
+    if (randomMovieTitle) {
+        fetchleftMovieDetailsAndUpdateHTML(randomMovieTitle);
+
+    } else {
+
+        const displayElementTitle = document.getElementById("movie-title-left");
+        displayElementTitle.textContent = "No movie title available yet";
+    };
+};
+
+const randomMovieButton = document.getElementById("randomMovieButton");
+randomMovieButton.addEventListener("click", randomMovieButtonClick);
