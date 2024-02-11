@@ -52,8 +52,20 @@ h4 {
    object-fit: contain;
 }
 
+.bg-animated {
+    animation: bgAnimated 10s infinite;
+}
+
 #home-page-title {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@keyframes bgAnimated {
+    0% { background-color: #3e2c41; }
+    25% { background-color: #261c2c; }
+    50% { background-color: #1f1b24; }
+    75% { background-color: #2b3a42; }
+    100% { background-color: #3e2c41; }
 }
