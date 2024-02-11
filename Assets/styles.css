@@ -64,8 +64,8 @@ h4 {
 
 @keyframes bgAnimated {
     0% { background-color: #3e2c41; }
-    25% { background-color: #755905; }
-    50% { background-color: #1f1b24; }
+    25% { background-color: #42412b; }
+    50% { background-color: #2b4230; }
     75% { background-color: #2b3a42; }
     100% { background-color: #3e2c41; }
 }
