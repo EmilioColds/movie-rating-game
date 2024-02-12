@@ -25,3 +25,60 @@ function searchVideo(element) {
 
 // <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
 
+
+
+/////////////////////////TOP SCORES///////////////////////////////////////////////////////////
+
+let currentCategory = '';  //Categoria actual en la que el usuario esrá jugando
+
+function increaseScore() {
+    scoreCounter++;
+    updateScoreDisplay();     //Incrementa la puntuación cada vez que el usuario responde correctamente
+  }
+
+  function updateScoreDisplay() {
+    const scoreDisplay = document.getElementById('score-counter');
+    if (scoreDisplay) {
+      scoreDisplay.textContent = scoreCounter;          //Actualiza la visualización de la puntuación
+    }
+  }
+  
+  function handleCorrectAnswer() {
+    increaseScore();                     //Logica para cuando se muestra una respuesta correcta
+  }
+
+
+  function initializeGame(category) {
+    scoreCounter = 0;
+    currentCategory = category;
+    updateScoreDisplay();                 //Restablece la puntuación del juego
+  }
+  
+
+  //Función para guardar la puntuación final en el Local Storage
+  function saveFinalScore() {
+    if (currentCategory) {
+      const categoryScores = JSON.parse(localStorage.getItem('categoryScores')) || {};
+      categoryScores[currentCategory] = scoreCounter;
+      localStorage.setItem('categoryScores', JSON.stringify(categoryScores));
+    }
+  }
+
+
+  //Función para mostrar los scores de la categoría
+  function showCategoryScores() {
+    const categoryScoresElement = document.getElementById('category-scores');
+    if (categoryScoresElement && currentCategory) {
+      const categoryScores = JSON.parse(localStorage.getItem('categoryScores')) || {};
+      const currentScore = categoryScores[currentCategory];
+      categoryScoresElement.textContent = `Your score in ${currentCategory}: ${currentScore || 0}`;
+    }
+  }
+   
+  window.onload = function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    initializeGame(categoryParam);
+  };
+
+  
