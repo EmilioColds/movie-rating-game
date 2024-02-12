@@ -1,44 +1,49 @@
-
-let categorySelected = false;
-let gameTypeSelected = false;
-
-
-function updateButtonState() {
-    const button = document.getElementById('start-game-button');
-    button.disabled = !(categorySelected && gameTypeSelected);
-}
-
-
-document.getElementById('category-row').addEventListener('click', function (event) {
-    if (event.target.closest('.game-image')) {
-        categorySelected = true;
-        updateButtonState();
-    }
-});
-
-
-document.getElementById('game-type-row').addEventListener('click', function (event) {
-    if (event.target.closest('.game-image')) {
-        gameTypeSelected = true;
-        updateButtonState();
-    }
-});
-
-
-
-/// START BUTTON
-
-
-
 document.addEventListener('DOMContentLoaded', function () {
-    var startButton = document.getElementById('start-button');
-    startButton.onclick = function () {
-        var homePage = document.getElementById('home-page');
-        var gamePage = document.getElementById('game-page');
-        homePage.style.display = 'none';
-        gamePage.style.display = 'block';
-    };
+
+    const startGameButton = document.getElementById('start-button');
+    startGameButton.disabled = true;
+
+    function checkIfSelectionMade() {
+        const categorySelected = document.querySelector('#category-row .game-image.selected') !== null;
+        const gameTypeSelected = document.querySelector('#game-type-row .game-image.selected') !== null;
+
+        startGameButton.disabled = !(categorySelected && gameTypeSelected);
+    }
+
+    function addSelectionListener(selector) {
+        document.querySelectorAll(selector).forEach(item => {
+            item.addEventListener('click', function () {
+
+                const currentlySelected = item.parentNode.querySelector('.selected');
+                if (currentlySelected) {
+                    currentlySelected.classList.remove('selected');
+                }
+
+
+                item.classList.add('selected');
+
+                checkIfSelectionMade();
+            });
+        });
+    }
+
+    addSelectionListener('#category-row .game-image');
+    addSelectionListener('#game-type-row .game-image');
+
+    startGameButton.addEventListener('click', function () {
+        if (!this.disabled) {
+
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('game-page').style.display = 'block';
+        }
+    });
 });
+
+
+
+// HEAD // 
+
+
 const YouTubeAPIKey = "AIzaSyDXbp7YPyb65jrrSvvqv53H8-q1W3V9dJ8";
 
 //Searches for the Video Title in de google API
