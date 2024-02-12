@@ -25,3 +25,22 @@ function searchVideo(element) {
 
 // <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
 
+//Start Button/////////////////////////////////////////////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Referencia al botón de inicio del juego
+    const startButton = document.getElementById('start-button');
+
+    // Referencia a las secciones de la página
+    const homePage = document.getElementById('home-page');
+    const gamePage = document.getElementById('game-page');
+
+    // Evento de click al botón de inicio del juego
+    startButton.addEventListener('click', function () {
+        // Oculta la página de inicio
+        homePage.classList.add('hidden');
+
+        // Muestra la página de juego
+        gamePage.classList.remove('hidden');
+    });
+});
