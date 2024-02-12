@@ -25,3 +25,62 @@ function searchVideo(element) {
 
 // <li onclick="searchVideo(this)">Gladiator</li> <!--Ejemplo de un elemento the watchlist-->
 
+//////////////////////////////////ScoreCounter///////////////////////////////////////////////////////
+
+// Variable para almacenar el contador de puntuación SIEMPRE INICIA EN 0
+let scoreCounter = 0;
+
+// Función para incrementar la puntuación, SE INCREMENTA LA PUNTUACION EN 1 POR 1 
+function increaseScore() {
+  scoreCounter++;
+  updateScoreDisplay();
+}
+
+// Función para actualizar la visualización de la puntuación
+function updateScoreDisplay() {
+  const scoreDisplay = document.getElementById('score-counter');
+  if (scoreDisplay) {
+    scoreDisplay.textContent = scoreCounter;
+  }
+}
+
+// Función para manejar la lógica cuando se muestra una respuesta correcta
+function handleCorrectAnswer() {
+  // Lógica para cuando la respuesta es correcta
+  increaseScore();
+  // DUDA Aquí habría que poner algo si la respuesta es incorrecta?????
+}
+
+function initializeGame() {
+  // Restablecer la puntuación al inicio del juego y empezar la puntuacuón en 0 
+  scoreCounter = 0;
+  updateScoreDisplay();
+
+}
+
+// Evento clic para el botón "HIGHER"
+document.getElementById('higher-button').addEventListener('click', function () {
+  // Lógica para verificar si la respuesta es correcta y actualizar la puntuación
+  handleCorrectAnswer();
+});
+
+// Evento clic para el botón "LOWER"
+document.getElementById('lower-button').addEventListener('click', function () {
+  // Lógica para verificar si la respuesta es correcta y actualizar la puntuación
+  handleCorrectAnswer();
+});
+
+// Evento para el botón "Play Again"
+document.getElementById('play-again-button').addEventListener('click', function () {
+  // Lógica para reiniciar el juego
+  initializeGame();
+});
+
+// Llama a la función de iniciar el juego al cargar la página
+window.onload = initializeGame;
+
+// Guarda la puntuación final en el Local Storage
+function saveFinalScore() {
+    localStorage.setItem('finalScore', scoreCounter.toString());
+  }
+  
