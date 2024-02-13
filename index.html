@@ -11,117 +11,134 @@
 </head>
 
 <body>
-    <main class="" container mx-auto p-4>
-
-        <section id="home-page" class="bg-gray-800 min-h-screen p-4 text-white">
+    <main>
+        <section id="home-page" class="bg-gray-800 min-h-screen p-4 text-white bg-animated">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header">
                 <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
                 <button id="highscores-button"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"> Highscores </button>
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg">
+                    Highscores </button>
             </header>
 
             <div id="home-page-title">
                 <img src="./Assets/Images/game-title.png" alt="Movies before Year 2000 Image" class="title-style">
             </div>
-            <div class="home-container" id="game-selectors">
-                <h2> Select your category! </h2>
-                <div class="row" id="category-row">
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="before2000-category">
+            <div class="home-container mx-auto text-center" id="game-selectors">
+                <h2 class="text-2xl mb-6 pl-5 font-bold"> Select your category! </h2>
+                <div class="flex flex-wrap justify-center gap-4 row" id="category-row">
+                    <div class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
+                        id="before2000-category" onclick="categorySelection(this)">
                         <img src="./Assets/Images/before2000-icon.png" alt="Movies before Year 2000 Image"
-                            class="object-contain h-40 w-full py-4">
+                            class="object-scale-down">
                         <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-                        <p> Movies before Year 2000 </p>
+                        <p class="text-style"> Movies before Year 2000 </p>
                     </div>
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="after2000-category">
+                    <div class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
+                        id="after2000-category" onclick="categorySelection(this)">
                         <img src="./Assets/Images/after2000-icon.png" alt="Movies after Year 2000 Image"
-                            class="object-contain h-40 w-full py-4">
+                            class="object-scale-down">
                         <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-                        <p> Movies after Year 2000 </p>
+                        <p class="text-style"> Movies after Year 2000 </p>
                     </div>
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="spanish-category">
+                    <div class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
+                        id="spanish-category" onclick="categorySelection(this)">
                         <img src="./Assets/Images/spanish-icon.png" alt="Movies in Spanish Image"
-                            class="object-contain h-40 w-full py-4">
+                            class="object-scale-down">
                         <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-                        <p> Movies in Spanish </p>
+                        <p class="text-style"> Movies in Spanish </p>
                     </div>
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="animated-category">
+                    <div class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
+                        id="animated-category" onclick="categorySelection(this)">
                         <img src="./Assets/Images/animated-icon.png" alt="Animated Movies Image"
-                            class="object-contain h-40 w-full py-4">
+                            class="object-scale-down">
                         <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-                        <p> Animated Movies </p>
+                        <p class="text-style"> Animated Movies </p>
                     </div>
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="oscar-category">
+                    <div class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer" id="oscar-category"
+                        onclick="categorySelection(this)">
                         <img src="./Assets/Images/oscar-icon.png" alt="Oscar Winner Movies Image"
-                            class="object-contain h-40 w-full py-4">
+                            class="object-scale-down">
                         <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-                        <p> Oscar Winner Movies </p>
+                        <p class="text-style"> Oscar Winner Movies </p>
                     </div>
                 </div>
                 <h2 class="text-2xl mt-12 mb-6 pl-5 font-bold"> And now, select the type of game! </h2>
                 <div class="row" id="game-type-row">
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="rating-type">
-                        <img src="./Assets/Images/rating-icon.png" alt="Rating Image"
-                            class="object-contain h-40 w-full py-4">
-                        <p> Movie Rating </p>
+                    <div class="type-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer" id="rating-type"
+                        onclick="typeSelection(this)">
+                        <img src="./Assets/Images/rating-icon.png" alt="Rating Image" class="object-scale-down">
+                        <p class="text-style"> Movie Rating </p>
                     </div>
-                    <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="boxoffice-type">
-                        <img src="./Assets/Images/boxoffice-icon.png" alt="Box Office Image"
-                            class="object-contain h-40 w-full py-4">
-                        <p> Box Office </p>
+                    <div class="type-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer" id="boxoffice-type"
+                        onclick="typeSelection(this)">
+                        <img src="./Assets/Images/boxoffice-icon.png" alt="Box Office Image" class="object-scale-down">
+                        <p class="text-style"> Box Office </p>
                     </div>
                 </div>
             </div>
-            <button id="start-button" class="bg-green-500 hover:bg-green-600 text-white font-bold mt-8 p-2 rounded">
-                Start Game </button>
+            <div class="flex justify-center mt-8">
+                <button id="start-button"
+                    class="bg-green-500 hover:bg-green-600 text-white font-bold mt-8 py-3 px-4 rounded shadow-lg"> Start
+                    Game </button>
+            </div>
         </section>
 
         <section id="game-page"
-            class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4">
+            class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 bg-animated hidden">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
 
-            <div class="game-container flex justify-around items-center w-full max-w-6xl my-8">
-                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-left">
-                    <img src=" " alt=" " id="poster-left"> <!-- Datos e imagen generada en JavaScript -->
+            <div class="game-container flex flex-wrap justify-center items-center w-full max-w-6xl mx-auto p-4">
+                <div class="movie bg-gray-700 p-5 rounded-lg  w-full md:w-1/3 p-4 flex flex-col items-center"
+                    id="movie-container-left">
+                    <img src=" " alt="Left Movie Poster" id="poster-left" class="poster-style">
+                    <!-- Datos e imagen generada en JavaScript -->
                     <div class="movie-details-left text-center mt-4">
                         <h2 class="text-2xl font-bold" id="movie-title-left"> </h2>
                         <!-- Título generado en JavaScript -->
                         <p class="mt-2"> has </p>
-                        <h3 class="text-xl" id="rating-boxoffice-left"> </h3>
+                        <h3 class="text-2xl font-bold mt-2 mb-2" id="rating-boxoffice-left"> </h3>
                         <!-- Rating o Boxoffice generado por JavaScript-->
-                        <p class="text-sm italic" id="game-type"> </p>
+                        <p class="mb-2" id="game-type"> </p>
                         <!-- The game type the user selected (Rating / Boxoffice) -->
-                        <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
+                        <button
+                            class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded shadow-lg"
                             id="watchlist-button-left"> Add to Watchlist! </button>
                     </div>
                 </div>
 
-                <div class="versus-section text-center">
+                <div class="versus-section text-center mt-6 mb-6 w-full md:w-auto">
                     <h2 class="versus-title text-4xl mx-10"> VS. </h2>
-                    <div class="score-container text-white py-2 px-4 rounded">
-                        <h3>Score: <span class="font-bold text-4xl" id="score-counter"> </span></h3>
+                    <div class="score-container text-white py-2 px-4">
+                        <h3> Score: <span id="score-counter"> </span></h3>
                         <!-- Aumentar el score después de cada pregunta en este ID -->
                     </div>
                 </div>
 
-                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center" id="movie-container-right">
-                    <img src=" " alt=" " id="poster-right"> <!-- Datos e imagen generada en JavaScript -->
+                <div class="movie bg-gray-700 p-5 rounded-lg flex flex-col items-center w-full md:w-1/3"
+                    id="movie-container-right">
+                    <img src=" " alt="Right Movie Poster" id="poster-right" class="poster-style rounded-lg">
+                    <!-- Datos e imagen generada en JavaScript -->
                     <div class="movie-details-right text-center mt-4">
                         <h2 class="text-2xl font-bold" id="movie-title-right"> </h2>
                         <!-- Título generado en JavaScript -->
                         <p class="mt-2"> has </p>
-                        <div id="game-buttons"> <!-- Cuando un botón sea seleccionado, esconder este div -->
-                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+                        <div id="game-buttons" class=" "> <!-- Cuando un botón sea seleccionado, esconder este div -->
+                            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-2 rounded shadow-lg"
                                 id="higher-button"> HIGHER </button>
                             <p class="mx-2 inline-block"> or </p>
-                            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+                            <button
+                                class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-2 rounded shadow-lg"
                                 id="lower-button"> LOWER </button>
                         </div>
-                        <h3 class="text-xl" id="rating-boxoffice-right"> </h3>
-                        <!-- Rating o Boxoffice generado por JavaScript-->
-                        <p class="text-sm italic" class="text-sm italic" id="game-type"> </p>
+                        <div class="hidden">
+                            <h3 class="text-2xl font-bold mt-2 mb-2" id="rating-boxoffice-right"> </h3>
+                            <!-- Rating o Boxoffice generado por JavaScript-->
+                        </div>
+                        <p class="mb-2 mt-2" id="game-type"> </p>
                         <!-- The game type the user selected (Rating / Boxoffice) -->
-                        <button class="mt-4 bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
+                        <button
+                            class="mt-2 bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-4 rounded shadow-lg"
                             id="watchlist-button-right"> Add to Watchlist! </button>
                     </div>
                 </div>
@@ -129,12 +146,14 @@
         </section>
 
         <section id="watchlist-page"
-            class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white">
+            class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white bg-animated ">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header">
                 <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
-                <button id="highscores-button"
-                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"> Highscores </button>
+                <button id="highscores-button2"
+                    class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded shadow-lg hidden">
+                    Highscores
+                </button>
             </header>
 
             <h2 class="text-2xl mb-6 pl-5 font-bold text-center"> Your final score is: <span id="score-counter"> </span>
@@ -149,26 +168,38 @@
                     </ul>
                 </div>
 
-                <div id="watchlist" class="my-4">
-                    <h3> My Watchlist </h3>
-                    <ul id="watchlist-elements" class="bg-gray-700 p-5 rounded-lg shadow-lg"> </ul>
+                <div id="watchlist" class="my-4 w-1/3">
+                    <h3 class="text-center font-bold text-2xl mb-6"> My Watchlist </h3>
+                    <ul id="watchlist-elements" class="bg-gray-700 p-5 rounded-lg shadow-lg">
+                        <li class="cursor-pointer text-xl underline">
+                            <!-- Es necesario crear H4 en esta sección para dar estilos y AGREGAR onclick dinámico a cada elemento -->
+
+                        </li>
+                    </ul>
                     <!-- Agregar a este ID el nombre de las pelis seleccionados y agregar un botón para llevar al tráiler -->
+                    <h3 class="text-center mt-2"> Click any title to watch the trailer! </h3>
                 </div>
             </div>
-            <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-8 p-2 rounded"> Play
-                Again </button>
+
+            <div class="flex justify-center">
+                <button id="play-again-button"
+                    class="bg-green-500 hover:bg-green-600 text-white mt-8 py-3 px-4 rounded shadow-lg"> Play Again
+                </button>
+            </div>
+
         </section>
 
-        <section id="highscores-page" class="bg-gray-800 min-h-screen p-4 text-white">
+        <section id="highscores-page" class="bg-gray-800 min-h-screen p-4 text-white bg-animated hidden">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
-            <h1> The Wall of Fame </h1>
+            <h1 class="flex justify-center mt-6"> The Wall of Fame </h1>
 
-            <h2> Ratings </h2>
+            <h2 class="text-center font-bold text-xl mb-6 mt-6"> Ratings </h2>
             <div class="highscore-categories grid grid-cols-5 gap-4">
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Movies before Year 2000 </h2>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Movies before Year 2000 </h2>
                     <!-- Cada nombre de categoría se modificará a las categorías seleccionadas -->
-                    <p class="top-score text-lg" id="top-score-before2000-rating"> </p>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2"
+                        id="top-score-before2000-rating"> <span class="mr-2"> 🌟 </span> </p>
                     <!-- Estos IDs se cambiarán a ser más específicos para cada categoría y aquí deberá generarse el top score de cada categoría en JavaScript -->
                 </div>
                 <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
@@ -226,8 +257,11 @@
                     </p>
                 </div>
             </div>
-            <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-8 p-2 rounded"> Play
-                Again </button> <!-- Mismo botón de Play Again que en Watchlist Page -->
+            <div class="flex justify-center">
+                <button id="play-again-button2"
+                    class="bg-green-500 hover:bg-green-600 text-white mt-10 py-3 px-4 rounded shadow-lg"> Play Again
+                </button> <!-- Mismo botón de Play Again que en Watchlist Page -->
+            </div>
         </section>
     </main>
 

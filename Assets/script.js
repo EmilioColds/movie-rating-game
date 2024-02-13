@@ -1,45 +1,34 @@
-// PASS GAME PAGE
+// START GAME BUTTON// 
 
 document.addEventListener('DOMContentLoaded', function () {
-
     const startGameButton = document.getElementById('start-button');
-    startGameButton.disabled = true;
+    const categoryIcons = document.querySelectorAll('.category-icons');
+    const typeIcons = document.querySelectorAll('.type-icons');
+    let categorySelected = false;
+    let gameTypeSelected = false;
 
-    function checkIfSelectionMade() {
-        const categorySelected = document.querySelector('#category-row .game-image.selected') !== null;
-        const gameTypeSelected = document.querySelector('#game-type-row .game-image.selected') !== null;
+
+    function handleSelection(event) {
+
+        if (event.target.closest('.category-icons')) {
+            categorySelected = true;
+        } else if (event.target.closest('.type-icons')) {
+            gameTypeSelected = true;
+        }
 
         startGameButton.disabled = !(categorySelected && gameTypeSelected);
     }
 
-    function addSelectionListener(selector) {
-        document.querySelectorAll(selector).forEach(item => {
-            item.addEventListener('click', function () {
+    categoryIcons.forEach(icon => icon.addEventListener('click', handleSelection));
+    typeIcons.forEach(icon => icon.addEventListener('click', handleSelection));
 
-                const currentlySelected = item.parentNode.querySelector('.selected');
-                if (currentlySelected) {
-                    currentlySelected.classList.remove('selected');
-                }
-
-
-                item.classList.add('selected');
-
-                checkIfSelectionMade();
-            });
-        });
-    }
-
-    addSelectionListener('#category-row .game-image');
-    addSelectionListener('#game-type-row .game-image');
 
     startGameButton.addEventListener('click', function () {
-        if (!this.disabled) {
-
-            document.getElementById('home-page').style.display = 'none';
-            document.getElementById('game-page').style.display = 'block';
-        }
+        document.getElementById('home-page').classList.add('hidden');
+        document.getElementById('game-page').classList.remove('hidden');
     });
 });
+
 
 
 // HIGHSCORES PAGE // 
@@ -55,6 +44,20 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('highscores-page').classList.remove('hidden');
     });
 });
+
+// // HIGHSCORES PAGE//
+
+document.addEventListener('DOMContentLoaded', function () {
+    var highscoresButton2 = document.getElementById('highscores-button2');
+    highscoresButton2.addEventListener('click', function () {
+        document.querySelectorAll('section').forEach(function (section) {
+            section.classList.add('hidden');
+        });
+        document.getElementById('highscores-page').classList.remove('hidden');
+    });
+});
+
+
 
 
 
@@ -115,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
         addToWatchlist(movieTitleRight);
     });
 });
+
+
+/////////////////////////////////////////////////
 
 
 const YouTubeAPIKey = "AIzaSyDXbp7YPyb65jrrSvvqv53H8-q1W3V9dJ8";
