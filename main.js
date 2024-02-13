@@ -73,7 +73,20 @@ async function getAllMovieTitles() {
     .then((movie) => {
       console.log(movie);
       // Aquí puede actualizar el DOM con los detalles de la movie found
+      updateMovieDetails(movie);
     })
     .catch((error) => {
       console.error(error);
     });
+
+    function updateMovieDetails(movie) {
+        var posterLeftEl = document.getElementById('poster-left');
+        var movieTitleLeftEl = document.getElementById('movie-title-left');
+        var ratingBoxofficeLeftEl = document.getElementById('rating-boxoffice-left');
+        var gameTypeEl = document.getElementById('game-type');
+
+        posterLeftEl.setAttribute('src', movie.Poster);
+        movieTitleLeftEl.textContent = movie.Title;
+        ratingBoxofficeLeftEl.textContent = movie.imdbRating;
+        gameTypeEl.textContent = 'IMDb Rating';
+    };
