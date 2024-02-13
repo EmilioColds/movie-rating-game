@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     var highscoresButton = document.getElementById('highscores-button');
 
-
     highscoresButton.addEventListener('click', function () {
 
         document.getElementById('home-page').classList.add('hidden');
@@ -45,8 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// // HIGHSCORES PAGE//
-
+// HIGHSCORE PAGE 2 // 
 document.addEventListener('DOMContentLoaded', function () {
     var highscoresButton2 = document.getElementById('highscores-button2');
     highscoresButton2.addEventListener('click', function () {
@@ -175,3 +173,5 @@ function typeSelection(selectedElement) {
     selectedElement.classList.remove('type-unselected');
     selectedElement.classList.add('type-selected');
 }
+
+
