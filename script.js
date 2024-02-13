@@ -160,3 +160,13 @@ function randomMovieButtonClick() {
 
 const randomMovieButton = document.getElementById("randomMovieButton");
 randomMovieButton.addEventListener("click", randomMovieButtonClick);
+
+
+fetch('movieTitles.json')
+  .then(response => {
+    return response.json();
+  })
+  .then(allMovieTitles => {
+    console.log(allMovieTitles)
+  })
+  .catch(error => console.error(error));
