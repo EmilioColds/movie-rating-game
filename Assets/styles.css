@@ -1,89 +1,101 @@
 h1 {
-    font-size: x-large;
-    font-weight: bold;
+  font-size: x-large;
+  font-weight: bold;
 }
 
 main {
-    height: auto;
-    width: auto;
+  height: auto;
+  width: auto;
 }
 
 h4 {
-    margin: 12px 0px 12px 0px;
-    text-align: center;
+  margin: 12px 0px 12px 0px;
+  text-align: center;
 }
 
 .row {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 20px;
-    width: auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: auto;
 }
 
-.category-selected, .type-selected {
-    transform: scale(1.25);
-    filter: none;
-    opacity: 1;
+.category-selected,
+.type-selected {
+  transform: scale(1.25);
+  filter: none;
+  opacity: 1;
 }
 
-.category-unselected, .type-unselected {
-    filter: blur(1px);
-    opacity: 0.6;;
+.category-unselected,
+.type-unselected {
+  filter: blur(1px);
+  opacity: 0.6;
 }
 
 .text-style {
-    text-align: center;
+  text-align: center;
 }
 
 .fa-film {
-    padding-right: 20px;
+  padding-right: 20px;
 }
 
 .title-style {
-    height: 80px;
-    padding: 7px 0px 7px 0px;
-    margin: 40px 0px 40px 0px;
+  height: 80px;
+  padding: 7px 0px 7px 0px;
+  margin: 40px 0px 40px 0px;
 }
 
 .poster-style {
-   width: 500px;
-   height: 500px;
-   object-fit: contain;
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
 }
 
 .highscore-categories {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 4px;
 }
 
 .category-title {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .bg-animated {
-    animation: bgAnimated 10s infinite;
+  animation: bgAnimated 10s infinite;
 }
 
 #home-page-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes bgAnimated {
-    0% { background-color: #3e2c41; }
-    25% { background-color: #42412b; }
-    50% { background-color: #2b4230; }
-    75% { background-color: #2b3a42; }
-    100% { background-color: #3e2c41; }
+  0% {
+    background-color: #3e2c41;
+  }
+  25% {
+    background-color: #42412b;
+  }
+  50% {
+    background-color: #2b4230;
+  }
+  75% {
+    background-color: #2b3a42;
+  }
+  100% {
+    background-color: #3e2c41;
+  }
 }
 
-  @media screen and (max-width: 720px) {
-    .highscore-categories {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-    }
+@media screen and (max-width: 720px) {
+  .highscore-categories {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
   }
+}
