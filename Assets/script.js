@@ -32,8 +32,8 @@ function searchVideo(element) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 
-const moviesAPIKey = "722da20b";
- var movieTitleOne = "The Matrix";
+const moviesAPIKey = "e240c7d3"; //
+ var movieTitleOne = "ABC Life: The Movie";
 //  var movieTitleTwo = 
 
 fetch("http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + movieTitleOne)
@@ -55,7 +55,7 @@ fetch("http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + movieTitleOne)
 let movieTitles = []; //array defined by the "getAllMovieTitles()" asyncFunction ; so that it can be used constantly in the code.
 
 async function getAllMovieTitles() {
-    const apiKey = '722da20b';
+    const apiKey = 'e240c7d3';
     const apiUrl = `http://www.omdbapi.com/?s=movie&apikey=` + apiKey; // Example API URL to search for movies in general.
 
     let allMovieTitles = [];
@@ -65,13 +65,14 @@ async function getAllMovieTitles() {
         while (true) {
             const response = await fetch(apiUrl + "&page=" + page);
             const data = await response.json();
-
+            console.log(data);
             if (data.Response === 'False') {
                 console.log('No more movies found');
                 break;
             }
 
             allMovieTitles.push(...data.Search.map(movie => movie.Title));
+  
 
             if (!data.Search || data.Search.length < 10) {
                 break;
@@ -119,7 +120,7 @@ function getRandomMovieTitle() {
 };
 
 async function fetchleftMovieDetailsAndUpdateHTML(movieTitle) {
-    const moviesAPIKey = "722da20b";
+    const moviesAPIKey = "e240c7d3";
     const apiUrl = "http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + encodeURIComponent(movieTitle);
 
     try {
@@ -139,6 +140,8 @@ function updateHTMLWithMovieDetailsleft(movieData) {
     titleElement.textContent = movieData.Title;
     const boxOfficeElement = document.getElementById("rating-boxoffice-left");
     boxOfficeElement.textContent = movieData.Metascore;
+    const posterElement = document.getElementById("poster-left");
+    posterElement.src = movieData.Poster;
 };
 
 
