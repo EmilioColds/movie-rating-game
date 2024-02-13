@@ -34,7 +34,7 @@ async function getAllMovieTitles() {
   function hasRequiredDetails(movie) {
     return (
       movie.imdbRating &&
-      movie.imdbRating !== "N/A"
+      movie.imdbRating !== "N/A" 
     );
   }
 
@@ -71,8 +71,9 @@ async function updateTwoMovieDetails() {
 }
 
     function updateMovieDetails(side, movie) {
+        var posterUrl = movie.Poster !== "N/A" && movie.Poster ? movie.Poster : './Assets/Images/MoviePosterExamples/Poster-Not-Available.jpeg';
 
-        document.getElementById(`poster-${side}`).setAttribute('src', movie.Poster);
+        document.getElementById(`poster-${side}`).setAttribute('src', posterUrl);
         document.getElementById(`movie-title-${side}`).textContent = movie.Title;
         document.getElementById(`rating-boxoffice-${side}`).textContent = movie.imdbRating;
         document.getElementById(`game-type-${side}`).textContent = "IMDb Rating";
