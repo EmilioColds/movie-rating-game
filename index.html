@@ -22,8 +22,7 @@
             </header>
 
             <div id="home-page-title">
-                <i class="fa fa-film"></i>
-                <h1> Movie Rating Game </h1>
+                <img src="./Assets/Images/game-title.png" alt="Movies before Year 2000 Image" class="title-style">
             </div>
             <div class="home-container" id="game-selectors">
                 <h2> Select your category! </h2>
@@ -59,7 +58,7 @@
                         <p> Oscar Winner Movies </p>
                     </div>
                 </div>
-                <h2> And now, select the type of game! </h2>
+                <h2 class="text-2xl mt-12 mb-6 pl-5 font-bold"> And now, select the type of game! </h2>
                 <div class="row" id="game-type-row">
                     <div class="game-image w-1/2 md:w-1/4 lg:w-1/6 xl:w-1/8 mx-auto" id="rating-type">
                         <img src="./Assets/Images/rating-icon.png" alt="Rating Image"
@@ -78,7 +77,7 @@
         </section>
 
         <section id="game-page"
-            class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4 hidden">
+            class="bg-gray-800 min-h-screen flex flex-col justify-center items-center text-white p-4">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
 
             <div class="game-container flex justify-around items-center w-full max-w-6xl my-8">
@@ -130,7 +129,7 @@
         </section>
 
         <section id="watchlist-page"
-            class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white hidden ">
+            class="bg-gray-800 min-h-screen p-4 text-whitebg-gray-800 min-h-screen p-4 text-white">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
             <header class="text-white p-4" id="header">
                 <!-- Agregar class="hidden" en JavaScript a esta sección para eliminar highscores button-->
@@ -138,11 +137,16 @@
                     class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"> Highscores </button>
             </header>
 
-            <h2> Your final score is: <span id="score-counter"> </span></h2>
-            <div class="row">
-                <div id="session-top-scores" class="my-4">
-                    <h3> Top Scores </h3>
-                    <ul id="session-scores-list" class="bg-gray-700 p-5 rounded-lg shadow-lg"> </ul>
+            <h2 class="text-2xl mb-6 pl-5 font-bold text-center"> Your final score is: <span id="score-counter"> </span>
+            </h2>
+            <div class="row justify-center">
+                <div id="session-top-scores" class="my-4 mr-12 w-1/3">
+                    <h3 class="text-center font-bold text-2xl mb-6"> Top Scores </h3>
+                    <ul id="session-scores-list" class="bg-gray-700 p-5 rounded-lg shadow-lg">
+                        <li class="text-xl"> <!-- Es necesario crear H4 en esta sección para dar estilos -->
+
+                        </li>
+                    </ul>
                 </div>
 
                 <div id="watchlist" class="my-4">
@@ -155,7 +159,7 @@
                 Again </button>
         </section>
 
-        <section id="highscores-page" class="bg-gray-800 min-h-screen p-4 text-white hidden">
+        <section id="highscores-page" class="bg-gray-800 min-h-screen p-4 text-white">
             <!-- Agregar class="hidden" en JavaScript a este ID -->
             <h1> The Wall of Fame </h1>
 
@@ -167,48 +171,57 @@
                     <p class="top-score text-lg" id="top-score-before2000-rating"> </p>
                     <!-- Estos IDs se cambiarán a ser más específicos para cada categoría y aquí deberá generarse el top score de cada categoría en JavaScript -->
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Movies after Year 2000 </h2>
-                    <p class="top-score text-lg" id="top-score-after2000-rating"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Movies after Year 2000 </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2" id="top-score-after2000-rating">
+                        <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Movies in Spanish </h2>
-                    <p class="top-score text-lg" id="top-score-spanish-rating"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Movies in Spanish </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2" id="top-score-spanish-rating">
+                        <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Animated Movies </h2>
-                    <p class="top-score text-lg" id="top-score-animated-rating"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Animated Movies </h2>
+                    <p class="top-score font-bold mt-9 text-lg flex justify-center p-2" id="top-score-animated-rating">
+                        <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Oscar Winner Movies </h2>
-                    <p class="top-score text-lg" id="top-score-oscar-rating"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Oscar Winner Movies </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2" id="top-score-oscar-rating">
+                        <span class="mr-2"> 🌟 </span> </p>
                 </div>
             </div>
 
-            <h2> Box Office </h2>
+            <h2 class="text-center font-bold text-xl mb-6 mt-10"> Box Office </h2>
             <div class="highscore-categories grid grid-cols-5 gap-4">
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Movies before Year 2000 </h2>
-                    <p class="top-score text-lg" id="top-score-before2000-boxoffice"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Movies before Year 2000 </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2"
+                        id="top-score-before2000-boxoffice"> <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Movies after Year 2000 </h2>
-                    <p class="top-score text-lg" id="top-score-after2000-boxoffice"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Movies after Year 2000 </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2"
+                        id="top-score-after2000-boxoffice"> <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Movies in Spanish </h2>
-                    <p class="top-score text-lg" id="top-score-spanish-boxoffice"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Movies in Spanish </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2"
+                        id="top-score-spanish-boxoffice"> <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Animated Movies </h2>
-                    <p class="top-score text-lg" id="top-score-animated-boxoffice"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style"> Animated Movies </h2>
+                    <p class="top-score font-bold mt-9 text-lg flex justify-center p-2"
+                        id="top-score-animated-boxoffice"> <span class="mr-2"> 🌟 </span> </p>
                 </div>
-                <div class="bg-gray-700 p-5 rounded-lg shadow-lg">
-                    <h2 class="category-title text-xl"> Oscar Winner Movies </h2>
-                    <p class="top-score text-lg" id="top-score-oscar-boxoffice"> </p>
+                <div class="bg-gray-700 p-5 rounded-lg shadow-lg w-24 md:w-32 lg:w-40 xl:w-48 mx-auto">
+                    <h2 class="category-title text-xl flex text-style "> Oscar Winner Movies </h2>
+                    <p class="top-score font-bold mt-2 text-lg flex justify-center p-2" id="top-score-oscar-boxoffice">
+                        <span class="mr-2"> 🌟 </span> </p>
                 </div>
             </div>
-            <button id="play-again-button2" class="bg-green-500 hover:bg-green-600 text-white mt-8 p-2 rounded"> Play
+            <button id="play-again-button" class="bg-green-500 hover:bg-green-600 text-white mt-8 p-2 rounded"> Play
                 Again </button> <!-- Mismo botón de Play Again que en Watchlist Page -->
         </section>
     </main>
