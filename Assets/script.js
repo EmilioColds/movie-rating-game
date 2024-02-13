@@ -1,4 +1,4 @@
-// PASAR A LA PANTALLA DE GAME-PAGE
+// PASS GAME PAGE
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -58,24 +58,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
 // PLAY AGAIN BUTTON 
-
 document.addEventListener('DOMContentLoaded', function () {
-
     var playAgainButton = document.getElementById('play-again-button');
-    playAgainButton.addEventListener('click', function () {
-
+    function resetViewToShowHomePage() {
         var sections = document.querySelectorAll('main > section');
         sections.forEach(function (section) {
             section.classList.add('hidden');
         });
         var homePage = document.getElementById('home-page');
         homePage.classList.remove('hidden');
-    });
+    }
+    playAgainButton.addEventListener('click', resetViewToShowHomePage);
 });
+
+
 
 // PLAY AGAIN BUTTON 2 
 
@@ -88,6 +85,34 @@ document.addEventListener('DOMContentLoaded', function () {
         });
         var homePage = document.getElementById('home-page');
         homePage.classList.remove('hidden');
+    });
+});
+
+
+// WATCHLIST 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    var watchlistButtonLeft = document.getElementById('watchlist-button-left');
+    var watchlistButtonRight = document.getElementById('watchlist-button-right');
+
+
+    function addToWatchlist(movieTitle) {
+        var li = document.createElement('li');
+        li.textContent = movieTitle;
+        li.classList.add('p-2');
+        document.getElementById('watchlist-elements').appendChild(li);
+    }
+
+    watchlistButtonLeft.addEventListener('click', function () {
+        var movieTitleLeft = document.getElementById('movie-title-left').textContent;
+        addToWatchlist(movieTitleLeft);
+    });
+
+    watchlistButtonRight.addEventListener('click', function () {
+        var movieTitleRight = document.getElementById('movie-title-right').textContent;
+        addToWatchlist(movieTitleRight);
     });
 });
 
