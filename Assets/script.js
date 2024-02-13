@@ -82,6 +82,87 @@ function increaseScore() {
   };
 
   
+//////////////////////////////////ScoreCounter///////////////////////////////////////////////////////
+
+// Variable para almacenar el contador de puntuación SIEMPRE INICIA EN 0
+let scoreCounter = 0;
+
+// Función para incrementar la puntuación, SE INCREMENTA LA PUNTUACION EN 1 POR 1 
+function increaseScore() {
+  scoreCounter++;
+  updateScoreDisplay();
+}
+
+// Función para actualizar la visualización de la puntuación
+function updateScoreDisplay() {
+  const scoreDisplay = document.getElementById('score-counter');
+  if (scoreDisplay) {
+    scoreDisplay.textContent = scoreCounter;
+  }
+}
+
+// Función para manejar la lógica cuando se muestra una respuesta correcta
+function handleCorrectAnswer() {
+  // Lógica para cuando la respuesta es correcta
+  increaseScore();
+  // DUDA Aquí habría que poner algo si la respuesta es incorrecta?????
+}
+
+function initializeGame() {
+  // Restablecer la puntuación al inicio del juego y empezar la puntuacuón en 0 
+  scoreCounter = 0;
+  updateScoreDisplay();
+
+}
+
+// Evento clic para el botón "HIGHER"
+document.getElementById('higher-button').addEventListener('click', function () {
+  // Lógica para verificar si la respuesta es correcta y actualizar la puntuación
+  handleCorrectAnswer();
+});
+
+// Evento clic para el botón "LOWER"
+document.getElementById('lower-button').addEventListener('click', function () {
+  // Lógica para verificar si la respuesta es correcta y actualizar la puntuación
+  handleCorrectAnswer();
+});
+
+// Evento para el botón "Play Again"
+document.getElementById('play-again-button').addEventListener('click', function () {
+  // Lógica para reiniciar el juego
+  initializeGame();
+});
+
+// Llama a la función de iniciar el juego al cargar la página
+window.onload = initializeGame;
+
+// Guarda la puntuación final en el Local Storage
+function saveFinalScore() {
+    localStorage.setItem('finalScore', scoreCounter.toString());
+  }
+  
+
+
+  //Start Button/////////////////////////////////////////////////////////////////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Referencia al botón de inicio del juego
+  const startButton = document.getElementById('start-button');
+
+  // Referencia a las secciones de la página
+  const homePage = document.getElementById('home-page');
+  const gamePage = document.getElementById('game-page');
+
+  // Evento de click al botón de inicio del juego
+  startButton.addEventListener('click', function () {
+      // Oculta la página de inicio
+      homePage.classList.add('hidden');
+
+      // Muestra la página de juego
+      gamePage.classList.remove('hidden');
+  });
+});
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 
