@@ -178,7 +178,7 @@ function typeSelection(selectedElement) {
 
 // Movie API section
 
-const moviesAPIKey = "e240c7d3"; //
+/* const moviesAPIKey = "e240c7d3"; //
  var movieTitleOne = "ABC Life: The Movie";
 //  var movieTitleTwo = 
 
@@ -316,4 +316,4 @@ fetch('movieTitles.json')
     console.log(allMovieTitles)
   })
   .catch(error => console.error(error));
-
+*/ 
