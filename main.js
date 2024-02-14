@@ -1,5 +1,11 @@
 let foundMovies = 0;
 let selectedMovies = [];
+let gameType = " ";
+
+
+function typeSelection(selectedElement) {
+    gameType = selectedElement.getAttribute("data-game-type");
+}
 
 async function getAllMovieTitles() {
   try {
@@ -24,7 +30,14 @@ async function fetchMovieDetails(title) {
       throw new Error("Error fetching movie details");
     }
     const movieDetails = await response.json();
-    return movieDetails;
+
+    let valueToShow = " ";
+    if (gameType === "imdbRating") {
+        valueToShow = movieDetails.imdbRating;
+    } else if (gameType === "Metascore") {
+        valueToShow = movieDetails.Metascore;
+    }
+    return { ...movieDetails, valueToShow };
   } catch (error) {
     console.error("Error fetching movie details:", error);
   }
@@ -94,3 +107,5 @@ updateTwoMovieDetails()
   .catch((error) => {
     console.log("Failed to update.", error);
   });
+
+
