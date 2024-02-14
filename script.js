@@ -7,21 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let categorySelected = false;
   let gameTypeSelected = false;
 
-  function handleSelection(event) {
-    if (event.target.closest(".category-icons")) {
-      categorySelected = true;
-    } else if (event.target.closest(".type-icons")) {
-      gameTypeSelected = true;
-    }
-
-    startGameButton.disabled = !(categorySelected && gameTypeSelected);
-  }
-
-  categoryIcons.forEach((icon) =>
-    icon.addEventListener("click", handleSelection)
-  );
-  typeIcons.forEach((icon) => icon.addEventListener("click", handleSelection));
-
   startGameButton.addEventListener("click", function () {
     document.getElementById("home-page").classList.add("hidden");
     document.getElementById("game-page").classList.remove("hidden");
