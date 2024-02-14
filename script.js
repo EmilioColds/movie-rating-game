@@ -171,12 +171,12 @@ function searchVideo(element) {
         const videoUrl = `https://www.youtube.com/watch?v=${videoId}`; //Defines the url of the FIRST video found in the search result.
         window.open(videoUrl); //Opens the link in a new browser window.
       } else {
-        alert("No trailer found."); //CAMBIAR A ALGO FISICO GENERADO EN EL HTML!!!
+        console.log ("No trailer found."); 
       }
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("An error occurred while searching for the video."); //CAMBIAR A ALGO FISICO GENERADO EN EL HTML!!!
+      console.log ("An error occurred while searching for the video."); 
     });
 }
 
