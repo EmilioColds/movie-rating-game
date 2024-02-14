@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   highscoresButton.addEventListener("click", function () {
     document.getElementById("home-page").classList.add("hidden");
-    document.getElementById("highscores-page").classList.remove("hidden");
+    document.getElementById("watchlist-page").classList.remove("hidden");
   });
 });
 
@@ -206,103 +206,127 @@ function typeSelection(selectedElement) {
   selectedElement.classList.add("type-selected");
 }
 
-//////////////////////////////////////SCORE COUNTER/////////////////////////////////////
+////////////////////Higher or lower and Score Counter
 
+function Scorestorage (scores) {
+let finalScore = JSON.parse(localStorage.getItem("final-score")) || [];
+finalScore.push(scores);
 
-const scoreCounterElement = document.getElementById('score-counter'); // Contador de puntuación
+localStorage.setItem("final-score", JSON.stringify(finalScore))
+}
+function showscores() {
+  let finalScore = JSON.parse(localStorage.getItem("final-score")) || [];
+  let scoreElement = document.getElementById("session-scores-list");
+  scoreElement.innerHTML = "";
 
-let score = 0; // Inicializa la puntuación en 0
-
-function updateScoreCounter() {
-    scoreCounterElement.textContent = score; // Función para actualizar y mostrar la puntuación en el contador
+  finalScore.forEach (scores => {
+    let scorelist = document.createElement ("h4");
+    scorelist.textContent = `${score}`;
+  
+    scoreElement.appendChild (scorelist);
+  }) 
 }
 
-function handleCorrectAnswer() { 
-    score += 1;                // Función para manejar la lógica cuando se selecciona una respuesta correcta // Incrementa la puntuación por cada respuesta correcta 1 por 1
- 
-    updateScoreCounter();  // Actualiza y muestra la puntuación
+//document.addEventListener("DOMContentLoaded", function () {
+  // Show the maximum score saved in local storage when loading the last page
+  //const topScore = localStorage.getItem('top-score') || 0;
+  //document.getElementById('top-score').textContent = topScore;
+//});
 
-    localStorage.setItem('userScore', score); // Guarda la puntuación en el localStorage
+let moviesUpdated = false;
+let score = 0; // Starts at 0 at the beginning of the game
+let topScore = localStorage.getItem('top-score') || 0;
+
+function compareRatings(isHigher) {
+  if (moviesUpdated) {
+    return;
+  }
+
+  const leftRatingElement = document.getElementById('rating-boxoffice-left');
+  const rightRatingElement = document.getElementById('rating-boxoffice-right');
+  const leftRating = parseFloat(leftRatingElement.textContent);
+  const rightRating = parseFloat(rightRatingElement.textContent);
+  const correctGuess = isHigher ? rightRating > leftRating : rightRating < leftRating;
+
+  document.getElementById('game-buttons').classList.add('hidden');
+  const movieContainerRight = document.getElementById('movie-container-right');
+  movieContainerRight.classList.remove('bg-green-500', 'bg-red-500');
+
+  if (correctGuess) {
+    movieContainerRight.classList.add('bg-green-500');
+    score += 10; // Increase the score by 10 if the answer is correct
+    document.getElementById('score-counter').textContent = score; // Update the score on the interface
+
+    // Check if a new top score has been reached
+    if (score > topScore) {
+      topScore = score;
+      localStorage.setItem('top-score', topScore);
+      document.getElementById('top-score').textContent = topScore; // Update the top score on the interface
+    }
+
+    setTimeout(() => {
+      movieContainerRight.classList.remove('bg-green-500');
+      updateTwoMovieDetails();
+      moviesUpdated = false;
+    }, 1500);
+    moviesUpdated = true;
+  } else {
+    movieContainerRight.classList.add('bg-red-500');
+    updateTwoMovieDetails();
+    setTimeout(() => {
+      showWatchlistPage();
+    }, 1500);
+  }
+
+  leftRatingElement.style.display = 'block';
+  rightRatingElement.style.display = 'block';
+  leftRatingElement.textContent = leftRating;
+  rightRatingElement.textContent = rightRating;
+
+  setTimeout(() => {
+    document.getElementById('game-buttons').classList.remove('hidden');
+    movieContainerRight.classList.remove('bg-green-500', 'bg-red-500');
+    leftRatingElement.textContent = leftRating;
+    rightRatingElement.textContent = rightRating;
+  }, 500);
+
+  if (correctGuess) {
+    const rightMovieImdbRating = parseFloat(document.getElementById('rating-boxoffice-right').textContent);
+    document.getElementById('rating-boxoffice-right').textContent = rightMovieImdbRating;
+  }
 }
 
-function getStoredScore() {  // Función para obtener la puntuación almacenada en localStorage
-    return parseInt(localStorage.getItem('userScore')) || 0;
+function showWatchlistPage() {
+  document.getElementById('game-page').classList.add('hidden');
+  document.getElementById('watchlist-page').classList.remove('hidden');
+  localStorage.setItem('final-score', score);
+  score = 0; // Reset the score when showing the page
+  document.getElementById('score-counter').textContent = score; // Update score on the interface
+showscores ();
 }
 
-function showFinalScore() {  // Función para mostrar la puntuación final en la última página
-    const finalScoreElements = document.querySelectorAll('.final-score'); 
 
-    finalScoreElements.forEach((element) => {
-        element.textContent = getStoredScore();   //Establece la puntuación final
-  });
+
+document.getElementById('higher-button').addEventListener('click', () => compareRatings(true));
+document.getElementById('lower-button').addEventListener('click', () => compareRatings(false));
+
+function showWatchlistPage() {
+  document.getElementById('game-page').classList.add('hidden');
+  document.getElementById('watchlist-page').classList.remove('hidden');
+  // Encuentra o crea el elemento para mostrar el puntaje
+  let scoreElement = document.getElementById('session-scores-list');
+  let scoreContent = document.getElementById('score-content');
+  if (!scoreContent) {
+    // Si no existe, lo creamos
+    scoreContent = document.createElement('h4');
+    scoreContent.id = 'score-content'; // Asignamos el ID
+    scoreElement.appendChild(scoreContent);
+  }
+  // Actualiza el puntaje y el estilo del texto
+  scoreContent.textContent = `Score: ${score}`; // Actualiza el texto con el último puntaje
+  scoreContent.style.color = 'white'; // Asegura que el texto sea blanco
+  // Guarda el puntaje final en localStorage y lo resetea
+  localStorage.setItem('final-score', score);
+  score = 0; // Resetea el score para el próximo juego
+  document.getElementById('score-counter').textContent = score; // Actualiza el score en la interfaz
 }
-showFinalScore(); // Al cargar la última página se muestra la puntuación final
-
-
-
-///////////////////////////////////////////////TOP SCORES/////////////////////////////////
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Se espera a que el contenido del DOM esté cargado
-
-    const scoreCounterElement = document.getElementById('score-counter');
-    const categoryIcons = document.querySelectorAll('.category-icons');
-    let categorySelected = false;
-    let gameTypeSelected = false;
-
-    // Función para manejar la selección de categoría y tipo de juego
-    function handleSelection(event) {
-        if (event.target.closest('.category-icons')) {
-            categorySelected = true;
-        } else if (event.target.closest('.type-icons')) {
-            gameTypeSelected = true;
-        }
-
-        // Deshabilita el botón de inicio 
-        startGameButton.disabled = !(categorySelected && gameTypeSelected);
-    }
-
-    // Agrega el evento de clic para cada icono de categoría
-    categoryIcons.forEach(icon => icon.addEventListener('click', handleSelection));
-
-    // Agrega el evento de clic para el botón de inicio del juego
-    startGameButton.addEventListener('click', function () {
-        // Obtiene la categoría seleccionada y la almacena en localStorage
-        const selectedCategory = document.querySelector('.category-selected').getAttribute('data-category');
-        localStorage.setItem('currentCategory', selectedCategory);
-        
-        // Oculta la página de inicio y muestra la página del juego
-        document.getElementById('home-page').classList.add('hidden');
-        document.getElementById('game-page').classList.remove('hidden');
-    });
-
-    // Función para manejar la respuesta correcta
-    function handleCorrectAnswer() {
-        // Incrementa la puntuación y actualiza el contador
-        score += 1;
-        updateScoreCounter();
-
-        // Almacena la puntuación en localStorage para la categoría actual
-        localStorage.setItem(`userScore_${localStorage.getItem('currentCategory')}`, score);
-    }
-
-    // Función para mostrar la puntuación final en la última página
-    function showFinalScore() {
-        const finalScoreElements = document.querySelectorAll('.final-score');
-        const currentCategory = localStorage.getItem('currentCategory');
-        const storedScore = getStoredScore(currentCategory);
-
-        // Actualiza los elementos de la página final con la puntuación almacenada
-        finalScoreElements.forEach((element) => {
-            element.textContent = storedScore;
-        });
-    }
-
-    // Función para obtener la puntuación almacenada en localStorage para cada categoría
-    function getStoredScore(category) {
-        return parseInt(localStorage.getItem(`userScore_${category}`)) || 0;
-    }
-
-    // Muestra la puntuación final al cargar la ultima página
-    showFinalScore();
-});

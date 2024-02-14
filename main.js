@@ -15,7 +15,7 @@ async function getAllMovieTitles() {
 }
 
 async function fetchMovieDetails(title) {
-  const apiUrl = `https://www.omdbapi.com/?apikey=309ccb54&t=${encodeURIComponent(
+  const apiUrl = `https://www.omdbapi.com/?apikey=e5316c1&t=${encodeURIComponent(
     title
   )}`;
   try {
@@ -94,3 +94,5 @@ updateTwoMovieDetails()
   .catch((error) => {
     console.log("Failed to update.", error);
   });
+
+  
