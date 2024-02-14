@@ -134,8 +134,20 @@ function loadWatchlist() {
         watchlistArray.forEach(function(itemText) {
             var watchlistListItem = document.createElement("h4");
             watchlistListItem.textContent = itemText;
-
+            //Adds 'onclick' to the h4 element.
             watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
+
+            var removeIcon = document.createElement("span");
+            removeIcon.textContent = "❌";
+            removeIcon.classList.add("remove-icon");
+            removeIcon.onclick = function(event) {
+                event.stopPropagation();
+                removeItemFromWatchlist(itemText, watchlistListItem);
+            };
+
+            watchlistListItem.appendChild(removeIcon);
+
+            
 
             var listItem = document.querySelector("#watchlist-elements li");
             listItem.appendChild(watchlistListItem);
@@ -143,6 +155,19 @@ function loadWatchlist() {
     };
 };
 
+function removeItemFromWatchlist(itemText, watchlistListItem) {
+    watchlistListItem.remove();
+
+    var watchlist = localStorage.getItem("watchlist");
+    if (watchlist) {
+        var watchlistArray = JSON.parse(watchlist);
+        var index = watchlistArray.indexOf(itemText);
+        if (index !== -1) {
+            watchlistArray.splice(index, 1);
+            localStorage.setItem("watchlist", JSON.stringify(watchlistArray));
+        }
+    }
+};
 
 /////////////////////////////////////////////////
 
