@@ -32,7 +32,7 @@ function searchVideo(element) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  
 
-const moviesAPIKey = "e240c7d3"; //
+const moviesAPIKey = "e240c7d3"; 
  var movieTitleOne = "ABC Life: The Movie";
 //  var movieTitleTwo = 
 
@@ -52,42 +52,59 @@ fetch("http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + movieTitleOne)
     });
 
 
-let movieTitles = []; //array defined by the "getAllMovieTitles()" asyncFunction ; so that it can be used constantly in the code.
+// let movieTitles = []; //array defined by the "getAllMovieTitles()" asyncFunction ; so that it can be used constantly in the code.
 
-async function getAllMovieTitles() {
-    const apiKey = 'e240c7d3';
-    const apiUrl = `http://www.omdbapi.com/?s=movie&apikey=` + apiKey; // Example API URL to search for movies in general.
+// async function getAllMovieTitles() {
+//     const apiKey = 'e240c7d3';
+//     const apiUrl = `http://www.omdbapi.com/?s=movie&apikey=` + apiKey; // Example API URL to search for movies in general.
 
-    let allMovieTitles = [];
-    let page = 1;
+//     let allMovieTitles = [];
+//     let page = 1;
 
-    try {
-        while (true) {
-            const response = await fetch(apiUrl + "&page=" + page);
-            const data = await response.json();
-            console.log(data);
-            if (data.Response === 'False') {
-                console.log('No more movies found');
-                break;
-            }
+//     try {
+//         while (true) {
+//             const response = await fetch(apiUrl + "&page=" + page);
+//             const data = await response.json();
+//             console.log(data);
+//             if (data.Response === 'False') {
+//                 console.log('No more movies found');
+//                 break;
+//             }
 
-            allMovieTitles.push(...data.Search.map(movie => movie.Title));
+//             allMovieTitles.push(...data.Search.map(movie => movie.Title));
   
 
-            if (!data.Search || data.Search.length < 10) {
-                break;
-            }
+//             if (!data.Search || data.Search.length < 10) {
+//                 break;
+//             }
 
-            page++;
-        }
+//             page++;
+//         }
 
-        movieTitles = allMovieTitles;
-    } catch (error) {
-        console.error('Error fetching movie data:', error);
-    };
+//         movieTitles = allMovieTitles;
+//     } catch (error) {
+//         console.error('Error fetching movie data:', error);
+//     };
 
-    return allMovieTitles;
-};
+//     return allMovieTitles;
+// };
+let movieTitles = [];
+fetch('movieTitles.json')
+  .then(response => {
+    return response.json();
+  })
+  .then(data => {
+    movieTitles = data; //Assign the data to the array.
+    console.log("Movies loaded successfully", movieTitles);
+  })
+  .catch(error => console.error(error));
+
+// fetch('movieTitles.json')
+//   .then(response => {
+//     return response.json();
+//   })
+//   .then(data => console.log(data))
+//   .catch(error => console.error(error));
 
 async function getRandomMovieTitle() {
     if (movieTitles.length === 0) {
@@ -99,14 +116,14 @@ async function getRandomMovieTitle() {
 };
 
 // Call the function to get all movie titles
-getAllMovieTitles()
+// getAllMovieTitles()
 
-    .then(movieTitles => {
-        console.log('All Movie Titles:', movieTitles);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+    // .then(movieTitles => {
+    //     console.log('All Movie Titles:', movieTitles);
+    // })
+    // .catch(error => {
+    //     console.error('Error:', error);
+    // });
 
 function getRandomMovieTitle() {
 
@@ -120,7 +137,7 @@ function getRandomMovieTitle() {
 };
 
 async function fetchleftMovieDetailsAndUpdateHTML(movieTitle) {
-    const moviesAPIKey = "e240c7d3";
+    const moviesAPIKey = "e240c7d3"; //
     const apiUrl = "http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + encodeURIComponent(movieTitle);
 
     try {
