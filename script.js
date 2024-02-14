@@ -78,31 +78,71 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// WATCHLIST
 
-document.addEventListener("DOMContentLoaded", function () {
-  var watchlistButtonLeft = document.getElementById("watchlist-button-left");
-  var watchlistButtonRight = document.getElementById("watchlist-button-right");
+///////////////////////WATCHLIST BUTTONS//////////////////////////////////////////////////////////////
+window.onload = function() {
+    loadWatchlist();
+};
 
-  function addToWatchlist(movieTitle) {
-    var li = document.createElement("li");
-    li.textContent = movieTitle;
-    li.classList.add("p-2");
-    document.getElementById("watchlist-elements").appendChild(li);
-  }
+document.getElementById("watchlist-button-left").addEventListener("click", function() {
+    var movieNameLeft = document.getElementById("movie-title-left").innerText;
+    
+    var watchlistListItem = document.createElement('h4');
+    watchlistListItem.textContent = movieNameLeft;
 
-  watchlistButtonLeft.addEventListener("click", function () {
-    var movieTitleLeft =
-      document.getElementById("movie-title-left").textContent;
-    addToWatchlist(movieTitleLeft);
-  });
+    watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
 
-  watchlistButtonRight.addEventListener("click", function () {
-    var movieTitleRight =
-      document.getElementById("movie-title-right").textContent;
-    addToWatchlist(movieTitleRight);
-  });
+    var listItem = document.querySelector("#watchlist-elements li");
+    listItem.appendChild(watchlistListItem);
+
+    saveWatchlist();
 });
+
+document.getElementById("watchlist-button-right").addEventListener("click", function() {
+    var movieNameRight = document.getElementById("movie-title-right").innerText;
+    
+    var watchlistListItem = document.createElement('h4');
+    watchlistListItem.textContent = movieNameRight;
+
+    watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
+
+    var listItem = document.querySelector("#watchlist-elements li");
+    listItem.appendChild(watchlistListItem);
+
+    saveWatchlist();
+});
+
+
+//Function to save waatchlist to localstorage.
+function saveWatchlist() {
+    var watchlistListItems = document.querySelectorAll("#watchlist-elements li h4");
+    var watchlistArray = [];
+
+    watchlistListItems.forEach(function(item) {
+        watchlistArray.push(item.textContent);
+    });
+
+    localStorage.setItem("watchlist", JSON.stringify(watchlistArray));
+};
+
+//Loads watchlist from local storage.
+function loadWatchlist() {
+    var watchlist = localStorage.getItem("watchlist");
+    if (watchlist) {
+        var watchlistArray = JSON.parse(watchlist);
+        
+        watchlistArray.forEach(function(itemText) {
+            var watchlistListItem = document.createElement("h4");
+            watchlistListItem.textContent = itemText;
+
+            watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
+
+            var listItem = document.querySelector("#watchlist-elements li");
+            listItem.appendChild(watchlistListItem);
+        });
+    };
+};
+
 
 /////////////////////////////////////////////////
 
