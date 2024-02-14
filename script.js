@@ -2,24 +2,23 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   const startGameButton = document.getElementById("start-button");
-  const categoryIcons = document.querySelectorAll(".category-icons");
   const typeIcons = document.querySelectorAll(".type-icons");
-  let categorySelected = false;
   let gameTypeSelected = false;
 
   function handleSelection(event) {
-    if (event.target.closest(".category-icons")) {
-      categorySelected = true;
-    } else if (event.target.closest(".type-icons")) {
-      gameTypeSelected = true;
+    var selectedIcon = event.target.closest(".type-icons");
+
+    if (selectedIcon) {
+        gameTypeSelected = true;
+        gameType = selectedIcon.getAttribute("data-game-type");
+        localStorage.setItem('gameType', gameType);
+
+        typeSelection(selectedIcon);
     }
 
-    startGameButton.disabled = !(categorySelected && gameTypeSelected);
+    startGameButton.disabled = !gameTypeSelected;
   }
 
-  categoryIcons.forEach((icon) =>
-    icon.addEventListener("click", handleSelection)
-  );
   typeIcons.forEach((icon) => icon.addEventListener("click", handleSelection));
 
   startGameButton.addEventListener("click", function () {
@@ -136,18 +135,8 @@ function searchVideo(element) {
 
 // Function para que los icons de HOME PAGE se pongan en HIGHLIGHT al ser seleccionados
 
-function categorySelection(selectedElement) {
-  document.querySelectorAll(".category-icons").forEach((image) => {
-    image.classList.remove("category-selected");
-    image.classList.add("category-unselected");
-  });
-
-  selectedElement.classList.remove("category-unselected");
-  selectedElement.classList.add("category-selected");
-}
-
 function typeSelection(selectedElement) {
-  document.querySelectorAll(".type-icons").forEach((image) => {
+  document.querySelectorAll(".type-icons").forEach(image => {
     image.classList.remove("type-selected");
     image.classList.add("type-unselected");
   });
@@ -202,14 +191,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Función para manejar la selección de categoría y tipo de juego
     function handleSelection(event) {
-        if (event.target.closest('.category-icons')) {
+        if (event.target.closest('.type-icons')) {
             categorySelected = true;
-        } else if (event.target.closest('.type-icons')) {
-            gameTypeSelected = true;
+        } else {
+            console.log(Error);
         }
 
         // Deshabilita el botón de inicio 
-        startGameButton.disabled = !(categorySelected && gameTypeSelected);
+        startGameButton.disabled = !(gameTypeSelected);
     }
 
     // Agrega el evento de clic para cada icono de categoría

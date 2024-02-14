@@ -97,7 +97,7 @@ function updateMovieDetails(side, movie) {
   document.getElementById(`movie-title-${side}`).textContent = movie.Title;
   document.getElementById(`rating-boxoffice-${side}`).textContent =
     movie.imdbRating;
-  document.getElementById(`game-type-${side}`).textContent = "IMDb Rating";
+  document.getElementById(`game-type-${side}`).textContent = "Rating";
 }
 
 updateTwoMovieDetails()

@@ -21,14 +21,12 @@ h4 {
   width: auto;
 }
 
-.category-selected,
 .type-selected {
   transform: scale(1.25);
   filter: none;
   opacity: 1;
 }
 
-.category-unselected,
 .type-unselected {
   filter: blur(1px);
   opacity: 0.6;
