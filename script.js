@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         typeSelection(selectedIcon);
     }
 
-    startGameButton.disabled = !gameTypeSelected;
+    startGameButton.disabled = !(gameTypeSelected);
   }
 
   typeIcons.forEach((icon) => icon.addEventListener("click", handleSelection));
@@ -144,7 +144,6 @@ function typeSelection(selectedElement) {
   selectedElement.classList.remove("type-unselected");
   selectedElement.classList.add("type-selected");
 }
-
 //////////////////////////////////////SCORE COUNTER/////////////////////////////////////
 
 
