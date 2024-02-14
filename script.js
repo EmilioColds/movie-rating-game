@@ -156,146 +156,103 @@ function typeSelection(selectedElement) {
   selectedElement.classList.add("type-selected");
 }
 
-/////////////////////////////////////
+//////////////////////////////////////SCORE COUNTER/////////////////////////////////////
 
-// Movie API section
 
-/* const moviesAPIKey = "e240c7d3"; //
- var movieTitleOne = "ABC Life: The Movie";
-//  var movieTitleTwo = 
+const scoreCounterElement = document.getElementById('score-counter'); // Contador de puntuación
 
-fetch("http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + movieTitleOne)
+let score = 0; // Inicializa la puntuación en 0
 
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("Network response was not OK");
+function updateScoreCounter() {
+    scoreCounterElement.textContent = score; // Función para actualizar y mostrar la puntuación en el contador
+}
+
+function handleCorrectAnswer() { 
+    score += 1;                // Función para manejar la lógica cuando se selecciona una respuesta correcta // Incrementa la puntuación por cada respuesta correcta 1 por 1
+ 
+    updateScoreCounter();  // Actualiza y muestra la puntuación
+
+    localStorage.setItem('userScore', score); // Guarda la puntuación en el localStorage
+}
+
+function getStoredScore() {  // Función para obtener la puntuación almacenada en localStorage
+    return parseInt(localStorage.getItem('userScore')) || 0;
+}
+
+function showFinalScore() {  // Función para mostrar la puntuación final en la última página
+    const finalScoreElements = document.querySelectorAll('.final-score'); 
+
+    finalScoreElements.forEach((element) => {
+        element.textContent = getStoredScore();   //Establece la puntuación final
+  });
+}
+showFinalScore(); // Al cargar la última página se muestra la puntuación final
+
+
+
+///////////////////////////////////////////////TOP SCORES/////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Se espera a que el contenido del DOM esté cargado
+
+    const scoreCounterElement = document.getElementById('score-counter');
+    const categoryIcons = document.querySelectorAll('.category-icons');
+    let categorySelected = false;
+    let gameTypeSelected = false;
+
+    // Función para manejar la selección de categoría y tipo de juego
+    function handleSelection(event) {
+        if (event.target.closest('.category-icons')) {
+            categorySelected = true;
+        } else if (event.target.closest('.type-icons')) {
+            gameTypeSelected = true;
         }
-        return response.json();
-    })
-    .then(data => {
-        console.log(data);
-    })
-    .catch(error => {
-        console.error("There was a problem with your fetch operation", error);
-    });
 
-
-let movieTitles = []; //array defined by the "getAllMovieTitles()" asyncFunction ; so that it can be used constantly in the code.
-
-async function getAllMovieTitles() {
-    const apiKey = '352a7d13';
-    const apiUrl = `http://www.omdbapi.com/?s=movie&apikey=` + apiKey; // Example API URL to search for movies in general.
-
-    let allMovieTitles = [];
-    let page = 1;
-
-    try {
-        while (true) {
-            const response = await fetch(apiUrl + "&page=" + page);
-            const data = await response.json();
-            console.log(data);
-            if (data.Response === 'False') {
-                console.log('No more movies found');
-                break;
-            }
-
-            allMovieTitles.push(...data.Search.map(movie => movie.Title));
-  
-
-            if (!data.Search || data.Search.length < 10) {
-                break;
-            }
-
-            page++;
-        }
-
-        movieTitles = allMovieTitles;
-    } catch (error) {
-        console.error('Error fetching movie data:', error);
-    };
-
-    return allMovieTitles;
-};
-
-async function getRandomMovieTitle() {
-    if (movieTitles.length === 0) {
-        console.log("Movie titles array is empty. Fetching movie titles...");
-        await getAllMovieTitles();
-    }
-    const randomIndex = Math.floor(Math.random() * movieTitles.length);
-    return movieTitles[randomIndex];
-};
-
-// Call the function to get all movie titles
-getAllMovieTitles()
-
-    .then(movieTitles => {
-        console.log('All Movie Titles:', movieTitles);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
-
-function getRandomMovieTitle() {
-
-    if (movieTitles.length ===0) {
-        console.log("Movie titles array is still empty.");
-        return null;
+        // Deshabilita el botón de inicio 
+        startGameButton.disabled = !(categorySelected && gameTypeSelected);
     }
 
-    const randomIndex = Math.floor(Math.random() * movieTitles.length);
-    return movieTitles[randomIndex];
-};
+    // Agrega el evento de clic para cada icono de categoría
+    categoryIcons.forEach(icon => icon.addEventListener('click', handleSelection));
 
-async function fetchleftMovieDetailsAndUpdateHTML(movieTitle) {
-    const moviesAPIKey = "e240c7d3";
-    const apiUrl = "http://www.omdbapi.com/?apikey=" + moviesAPIKey + "&t=" + encodeURIComponent(movieTitle);
+    // Agrega el evento de clic para el botón de inicio del juego
+    startGameButton.addEventListener('click', function () {
+        // Obtiene la categoría seleccionada y la almacena en localStorage
+        const selectedCategory = document.querySelector('.category-selected').getAttribute('data-category');
+        localStorage.setItem('currentCategory', selectedCategory);
+        
+        // Oculta la página de inicio y muestra la página del juego
+        document.getElementById('home-page').classList.add('hidden');
+        document.getElementById('game-page').classList.remove('hidden');
+    });
 
-    try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-            throw new Error("Network response was not OK");
-        }
-        const data = await response.json();
-        updateHTMLWithMovieDetailsleft(data);
-    } catch (error) {
-        console.error("There was a problem with your fetch operation", error);
-    };
-};
+    // Función para manejar la respuesta correcta
+    function handleCorrectAnswer() {
+        // Incrementa la puntuación y actualiza el contador
+        score += 1;
+        updateScoreCounter();
 
-function updateHTMLWithMovieDetailsleft(movieData) {
-    const titleElement = document.getElementById("movie-title-left");
-    titleElement.textContent = movieData.Title;
-    const boxOfficeElement = document.getElementById("rating-boxoffice-left");
-    boxOfficeElement.textContent = movieData.Metascore;
-    const posterElement = document.getElementById("poster-left");
-    posterElement.src = movieData.Poster;
-};
+        // Almacena la puntuación en localStorage para la categoría actual
+        localStorage.setItem(`userScore_${localStorage.getItem('currentCategory')}`, score);
+    }
 
+    // Función para mostrar la puntuación final en la última página
+    function showFinalScore() {
+        const finalScoreElements = document.querySelectorAll('.final-score');
+        const currentCategory = localStorage.getItem('currentCategory');
+        const storedScore = getStoredScore(currentCategory);
 
-function randomMovieButtonClick() {
-    const randomMovieTitle = getRandomMovieTitle();
+        // Actualiza los elementos de la página final con la puntuación almacenada
+        finalScoreElements.forEach((element) => {
+            element.textContent = storedScore;
+        });
+    }
 
-    if (randomMovieTitle) {
-        fetchleftMovieDetailsAndUpdateHTML(randomMovieTitle);
+    // Función para obtener la puntuación almacenada en localStorage para cada categoría
+    function getStoredScore(category) {
+        return parseInt(localStorage.getItem(`userScore_${category}`)) || 0;
+    }
 
-    } else {
-
-        const displayElementTitle = document.getElementById("movie-title-left");
-        displayElementTitle.textContent = "No movie title available yet";
-    };
-};
-
-const randomMovieButton = document.getElementById("randomMovieButton");
-randomMovieButton.addEventListener("click", randomMovieButtonClick);
-
-
-fetch('movieTitles.json')
-  .then(response => {
-    return response.json();
-  })
-  .then(allMovieTitles => {
-    console.log(allMovieTitles)
-  })
-  .catch(error => console.error(error));
-*/
+    // Muestra la puntuación final al cargar la ultima página
+    showFinalScore();
+});
