@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   highscoresButton.addEventListener("click", function () {
     document.getElementById("home-page").classList.add("hidden");
-    document.getElementById("highscores-page").classList.remove("hidden");
+    document.getElementById("watchlist-page").classList.remove("hidden");
   });
 });
 
@@ -214,10 +214,10 @@ finalScore.push(scores);
 
 localStorage.setItem("final-score", JSON.stringify(finalScore))
 }
-function showscores(){
+function showscores() {
   let finalScore = JSON.parse(localStorage.getItem("final-score")) || [];
-  let scoreElement = document.getElementById ("session-scores-list");
-  scoreElement.innerHTML = " ";
+  let scoreElement = document.getElementById("session-scores-list");
+  scoreElement.innerHTML = "";
 
   finalScore.forEach (scores => {
     let scorelist = document.createElement ("h4");
@@ -310,3 +310,23 @@ showscores ();
 document.getElementById('higher-button').addEventListener('click', () => compareRatings(true));
 document.getElementById('lower-button').addEventListener('click', () => compareRatings(false));
 
+function showWatchlistPage() {
+  document.getElementById('game-page').classList.add('hidden');
+  document.getElementById('watchlist-page').classList.remove('hidden');
+  // Encuentra o crea el elemento para mostrar el puntaje
+  let scoreElement = document.getElementById('session-scores-list');
+  let scoreContent = document.getElementById('score-content');
+  if (!scoreContent) {
+    // Si no existe, lo creamos
+    scoreContent = document.createElement('h4');
+    scoreContent.id = 'score-content'; // Asignamos el ID
+    scoreElement.appendChild(scoreContent);
+  }
+  // Actualiza el puntaje y el estilo del texto
+  scoreContent.textContent = `Score: ${score}`; // Actualiza el texto con el último puntaje
+  scoreContent.style.color = 'white'; // Asegura que el texto sea blanco
+  // Guarda el puntaje final en localStorage y lo resetea
+  localStorage.setItem('final-score', score);
+  score = 0; // Resetea el score para el próximo juego
+  document.getElementById('score-counter').textContent = score; // Actualiza el score en la interfaz
+}
