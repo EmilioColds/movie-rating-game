@@ -94,3 +94,5 @@ updateTwoMovieDetails()
   .catch((error) => {
     console.log("Failed to update.", error);
   });
+
+  
