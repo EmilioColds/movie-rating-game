@@ -164,26 +164,26 @@ const scoreCounterElement = document.getElementById('score-counter'); // Contado
 let score = 0; // Inicializa la puntuación en 0
 
 function updateScoreCounter() {
-    scoreCounterElement.textContent = score; // Función para actualizar y mostrar la puntuación en el contador
+  scoreCounterElement.textContent = score; // Función para actualizar y mostrar la puntuación en el contador
 }
 
-function handleCorrectAnswer() { 
-    score += 1;                // Función para manejar la lógica cuando se selecciona una respuesta correcta // Incrementa la puntuación por cada respuesta correcta 1 por 1
- 
-    updateScoreCounter();  // Actualiza y muestra la puntuación
+function handleCorrectAnswer() {
+  score += 1;                // Función para manejar la lógica cuando se selecciona una respuesta correcta // Incrementa la puntuación por cada respuesta correcta 1 por 1
 
-    localStorage.setItem('userScore', score); // Guarda la puntuación en el localStorage
+  updateScoreCounter();  // Actualiza y muestra la puntuación
+
+  localStorage.setItem('userScore', score); // Guarda la puntuación en el localStorage
 }
 
 function getStoredScore() {  // Función para obtener la puntuación almacenada en localStorage
-    return parseInt(localStorage.getItem('userScore')) || 0;
+  return parseInt(localStorage.getItem('userScore')) || 0;
 }
 
 function showFinalScore() {  // Función para mostrar la puntuación final en la última página
-    const finalScoreElements = document.querySelectorAll('.final-score'); 
+  const finalScoreElements = document.querySelectorAll('.final-score');
 
-    finalScoreElements.forEach((element) => {
-        element.textContent = getStoredScore();   //Establece la puntuación final
+  finalScoreElements.forEach((element) => {
+    element.textContent = getStoredScore();   //Establece la puntuación final
   });
 }
 showFinalScore(); // Al cargar la última página se muestra la puntuación final
@@ -193,66 +193,66 @@ showFinalScore(); // Al cargar la última página se muestra la puntuación fina
 ///////////////////////////////////////////////TOP SCORES/////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Se espera a que el contenido del DOM esté cargado
+  // Se espera a que el contenido del DOM esté cargado
 
-    const scoreCounterElement = document.getElementById('score-counter');
-    const categoryIcons = document.querySelectorAll('.category-icons');
-    let categorySelected = false;
-    let gameTypeSelected = false;
+  const scoreCounterElement = document.getElementById('score-counter');
+  const categoryIcons = document.querySelectorAll('.category-icons');
+  let categorySelected = false;
+  let gameTypeSelected = false;
 
-    // Función para manejar la selección de categoría y tipo de juego
-    function handleSelection(event) {
-        if (event.target.closest('.category-icons')) {
-            categorySelected = true;
-        } else if (event.target.closest('.type-icons')) {
-            gameTypeSelected = true;
-        }
-
-        // Deshabilita el botón de inicio 
-        startGameButton.disabled = !(categorySelected && gameTypeSelected);
+  // Función para manejar la selección de categoría y tipo de juego
+  function handleSelection(event) {
+    if (event.target.closest('.category-icons')) {
+      categorySelected = true;
+    } else if (event.target.closest('.type-icons')) {
+      gameTypeSelected = true;
     }
 
-    // Agrega el evento de clic para cada icono de categoría
-    categoryIcons.forEach(icon => icon.addEventListener('click', handleSelection));
+    // Deshabilita el botón de inicio 
+    startGameButton.disabled = !(categorySelected && gameTypeSelected);
+  }
 
-    // Agrega el evento de clic para el botón de inicio del juego
-    startGameButton.addEventListener('click', function () {
-        // Obtiene la categoría seleccionada y la almacena en localStorage
-        const selectedCategory = document.querySelector('.category-selected').getAttribute('data-category');
-        localStorage.setItem('currentCategory', selectedCategory);
-        
-        // Oculta la página de inicio y muestra la página del juego
-        document.getElementById('home-page').classList.add('hidden');
-        document.getElementById('game-page').classList.remove('hidden');
+  // Agrega el evento de clic para cada icono de categoría
+  categoryIcons.forEach(icon => icon.addEventListener('click', handleSelection));
+
+  // Agrega el evento de clic para el botón de inicio del juego
+  startGameButton.addEventListener('click', function () {
+    // Obtiene la categoría seleccionada y la almacena en localStorage
+    const selectedCategory = document.querySelector('.category-selected').getAttribute('data-category');
+    localStorage.setItem('currentCategory', selectedCategory);
+
+    // Oculta la página de inicio y muestra la página del juego
+    document.getElementById('home-page').classList.add('hidden');
+    document.getElementById('game-page').classList.remove('hidden');
+  });
+
+  // Función para manejar la respuesta correcta
+  function handleCorrectAnswer() {
+    // Incrementa la puntuación y actualiza el contador
+    score += 1;
+    updateScoreCounter();
+
+    // Almacena la puntuación en localStorage para la categoría actual
+    localStorage.setItem(`userScore_${localStorage.getItem('currentCategory')}`, score);
+  }
+
+  // Función para mostrar la puntuación final en la última página
+  function showFinalScore() {
+    const finalScoreElements = document.querySelectorAll('.final-score');
+    const currentCategory = localStorage.getItem('currentCategory');
+    const storedScore = getStoredScore(currentCategory);
+
+    // Actualiza los elementos de la página final con la puntuación almacenada
+    finalScoreElements.forEach((element) => {
+      element.textContent = storedScore;
     });
+  }
 
-    // Función para manejar la respuesta correcta
-    function handleCorrectAnswer() {
-        // Incrementa la puntuación y actualiza el contador
-        score += 1;
-        updateScoreCounter();
+  // Función para obtener la puntuación almacenada en localStorage para cada categoría
+  function getStoredScore(category) {
+    return parseInt(localStorage.getItem(`userScore_${category}`)) || 0;
+  }
 
-        // Almacena la puntuación en localStorage para la categoría actual
-        localStorage.setItem(`userScore_${localStorage.getItem('currentCategory')}`, score);
-    }
-
-    // Función para mostrar la puntuación final en la última página
-    function showFinalScore() {
-        const finalScoreElements = document.querySelectorAll('.final-score');
-        const currentCategory = localStorage.getItem('currentCategory');
-        const storedScore = getStoredScore(currentCategory);
-
-        // Actualiza los elementos de la página final con la puntuación almacenada
-        finalScoreElements.forEach((element) => {
-            element.textContent = storedScore;
-        });
-    }
-
-    // Función para obtener la puntuación almacenada en localStorage para cada categoría
-    function getStoredScore(category) {
-        return parseInt(localStorage.getItem(`userScore_${category}`)) || 0;
-    }
-
-    // Muestra la puntuación final al cargar la ultima página
-    showFinalScore();
+  // Muestra la puntuación final al cargar la ultima página
+  showFinalScore();
 });

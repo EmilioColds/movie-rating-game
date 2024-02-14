@@ -93,4 +93,139 @@ updateTwoMovieDetails()
   })
   .catch((error) => {
     console.log("Failed to update.", error);
+    if (side === "left") {
+      currentMovieRating = parseFloat(movieDetails.imdbRating);
+    } else {
+      nextMovieRating = parseFloat(movieDetails.imdbRating);
+    }
   });
+///////////////////////////////////////////////////////7
+
+// RATINGS // 
+
+let moviesUpdated = false;
+
+function compareRatings(isHigher) {
+  if (moviesUpdated) {
+    return;
+  }
+
+  const leftRatingElement = document.getElementById('rating-boxoffice-left');
+  const rightRatingElement = document.getElementById('rating-boxoffice-right');
+  const leftRating = parseFloat(leftRatingElement.textContent);
+  const rightRating = parseFloat(rightRatingElement.textContent);
+  const correctGuess = isHigher ? rightRating > leftRating : rightRating < leftRating;
+
+  document.getElementById('game-buttons').classList.add('hidden');
+
+  const movieContainerRight = document.getElementById('movie-container-right');
+
+  movieContainerRight.classList.remove('bg-green-500', 'bg-red-500');
+
+  if (correctGuess) {
+    movieContainerRight.classList.add('bg-green-500');
+    setTimeout(() => {
+      movieContainerRight.classList.remove('bg-green-500');
+      updateTwoMovieDetails();
+      moviesUpdated = false;
+    }, 1500);
+    moviesUpdated = true;
+  } else {
+    movieContainerRight.classList.add('bg-red-500');
+    updateTwoMovieDetails();
+    setTimeout(() => {
+      showWatchlistPage();
+    }, 1500);
+  }
+
+  leftRatingElement.style.display = 'block';
+  rightRatingElement.style.display = 'block';
+
+  leftRatingElement.textContent = leftRating;
+  rightRatingElement.textContent = rightRating;
+
+  setTimeout(() => {
+    document.getElementById('game-buttons').classList.remove('hidden');
+    movieContainerRight.classList.remove('bg-green-500', 'bg-red-500');
+    leftRatingElement.textContent = leftRating;
+    rightRatingElement.textContent = rightRating;
+  }, 500);
+
+  if (correctGuess) {
+    const rightMovieImdbRating = parseFloat(document.getElementById('rating-boxoffice-right').textContent);
+    document.getElementById('rating-boxoffice-right').textContent = rightMovieImdbRating;
+  }
+}
+
+function showWatchlistPage() {
+  document.getElementById('game-page').classList.add('hidden');
+  document.getElementById('watchlist-page').classList.remove('hidden');
+}
+
+document.getElementById('higher-button').addEventListener('click', () => compareRatings(true));
+document.getElementById('lower-button').addEventListener('click', () => compareRatings(false));
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+// Función para mostrar la pantalla de watchlist
+function showWatchlistPage() {
+  // Aquí ocultarías la sección del juego y mostrarías la de watchlist
+  document.getElementById('game-page').classList.add('hidden');
+  document.getElementById('watchlist-page').classList.remove('hidden');
+}
+
+// Agregar eventos de clic a los botones "Higher" y "Lower"
+document.getElementById('higher-button').addEventListener('click', function () {
+  compareRatings(true);
+});
+
+document.getElementById('lower-button').addEventListener('click', function () {
+  compareRatings(false);
+});
+
+window.onload = function () {
+  loadWatchlist();
+};
+document.getElementById("watchlist-button-left").addEventListener("click", function () {
+  var movieNameLeft = document.getElementById("movie-title-left").innerText;
+  var watchlistListItem = document.createElement('h4');
+  watchlistListItem.textContent = movieNameLeft;
+  watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
+  var listItem = document.querySelector("#watchlist-elements li");
+  listItem.appendChild(watchlistListItem);
+  saveWatchlist();
+});
+document.getElementById("watchlist-button-right").addEventListener("click", function () {
+  var movieNameRight = document.getElementById("movie-title-right").innerText;
+  var watchlistListItem = document.createElement('h4');
+  watchlistListItem.textContent = movieNameRight;
+  watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
+  var listItem = document.querySelector("#watchlist-elements li");
+  listItem.appendChild(watchlistListItem);
+  saveWatchlist();
+});
+//Function to save waatchlist to localstorage.
+function saveWatchlist() {
+  var watchlistListItems = document.querySelectorAll("#watchlist-elements li h4");
+  var watchlistArray = [];
+  watchlistListItems.forEach(function (item) {
+    watchlistArray.push(item.textContent);
+  });
+  localStorage.setItem("watchlist", JSON.stringify(watchlistArray));
+};
+//Loads watchlist from local storage.
+function loadWatchlist() {
+  var watchlist = localStorage.getItem("watchlist");
+  if (watchlist) {
+    var watchlistArray = JSON.parse(watchlist);
+    watchlistArray.forEach(function (itemText) {
+      var watchlistListItem = document.createElement("h4");
+      watchlistListItem.textContent = itemText;
+      watchlistListItem.setAttribute('onclick', 'searchVideo(this)');
+      var listItem = document.querySelector("#watchlist-elements li");
+      listItem.appendChild(watchlistListItem);
+    });
+  };
+};
