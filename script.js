@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   highscoresButton.addEventListener("click", function () {
     document.getElementById("home-page").classList.add("hidden");
-    document.getElementById("highscores-page").classList.remove("hidden");
+    document.getElementById("watchlist-page").classList.remove("hidden");
   });
 });
 
