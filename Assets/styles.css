@@ -69,6 +69,15 @@ h4 {
   animation: bgAnimated 10s infinite;
 }
 
+.bg-green-500 {
+  background-color: #48BB78;
+  /* Verde */
+}
+.bg-red-500 {
+  background-color: #F56565;
+  /* Rojo */
+}
+
 #home-page-title {
   display: flex;
   justify-content: center;

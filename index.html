@@ -35,111 +35,21 @@
         <div id="home-page-title">
           <img
             src="./Assets/Images/game-title.png"
-            alt="Movies before Year 2000 Image"
+            alt="Game Logo"
             class="title-style"
           />
         </div>
         <div class="home-container mx-auto text-center" id="game-selectors">
-          <h2 class="text-2xl mb-6 pl-5 font-bold">Select your category!</h2>
-          <div
-            class="flex flex-wrap justify-center gap-4 row"
-            id="category-row"
-          >
-            <div
-              class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="before2000-category"
-              onclick="categorySelection(this)"
-            >
-              <img
-                src="./Assets/Images/before2000-icon.png"
-                alt="Movies before Year 2000 Image"
-                class="object-scale-down"
-              />
-              <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-              <p class="text-style">Movies before Year 2000</p>
-            </div>
-            <div
-              class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="after2000-category"
-              onclick="categorySelection(this)"
-            >
-              <img
-                src="./Assets/Images/after2000-icon.png"
-                alt="Movies after Year 2000 Image"
-                class="object-scale-down"
-              />
-              <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-              <p class="text-style">Movies after Year 2000</p>
-            </div>
-            <div
-              class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="spanish-category"
-              onclick="categorySelection(this)"
-            >
-              <img
-                src="./Assets/Images/spanish-icon.png"
-                alt="Movies in Spanish Image"
-                class="object-scale-down"
-              />
-              <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-              <p class="text-style">Movies in Spanish</p>
-            </div>
-            <div
-              class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="animated-category"
-              onclick="categorySelection(this)"
-            >
-              <img
-                src="./Assets/Images/animated-icon.png"
-                alt="Animated Movies Image"
-                class="object-scale-down"
-              />
-              <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-              <p class="text-style">Animated Movies</p>
-            </div>
-            <div
-              class="category-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="oscar-category"
-              onclick="categorySelection(this)"
-            >
-              <img
-                src="./Assets/Images/oscar-icon.png"
-                alt="Oscar Winner Movies Image"
-                class="object-scale-down"
-              />
-              <!-- En el source se pondrá una imagen según la categoría y el alt cambiará a el subtítulo del elemento -->
-              <p class="text-style">Oscar Winner Movies</p>
-            </div>
-          </div>
-          <h2 class="text-2xl mt-12 mb-6 pl-5 font-bold">
-            And now, select the type of game!
-          </h2>
-          <div class="row" id="game-type-row">
-            <div
-              class="type-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="rating-type"
-              onclick="typeSelection(this)"
-            >
-              <img
-                src="./Assets/Images/rating-icon.png"
-                alt="Rating Image"
-                class="object-scale-down"
-              />
-              <p class="text-style">Movie Rating</p>
-            </div>
-            <div
-              class="type-icons w-24 md:w-32 lg:w-40 xl:w-48 mx-auto cursor-pointer"
-              id="boxoffice-type"
-              onclick="typeSelection(this)"
-            >
-              <img
-                src="./Assets/Images/boxoffice-icon.png"
-                alt="Box Office Image"
-                class="object-scale-down"
-              />
-              <p class="text-style">Box Office</p>
-            </div>
-          </div>
+          <h2 class="text-xl mb-6 pl-5 font-bold">Here are the instructions for the game:</h2>
+          <ul>
+            <li class=" bg-gray-700 p-5 rounded-lg shadow-lg mx-auto mt-2 justify-center text-left w-1/2">
+                <h2 class="text-xl mb-6 pl-5 font-bold"> 1. You will be prompt with TWO movies. </h2>
+                <h2 class="text-xl mb-6 pl-5 font-bold"> 2. Only one movie will show it's IMDb rating. </h2>
+                 <h2 class="text-xl mb-6 pl-5 font-bold"> 3. Your mission <span>(should you choose to accept it)</span></son> will be to guess if the second movie has a <span> HIGHER </span> or <span> LOWER </span> rating than the first one. </h2>
+                 <h2 class="text-xl mb-6 pl-5 font-bold"> 4. Also, you will be able to see your current score AND add movies to your personal watchlist. </h2>
+                 <h2 class="text-xl mb-6 pl-5 font-bold"> 5. Click any of the movies in your watchlist to automatically see the trailer. </h2>
+            </li>
+          </ul>
         </div>
         <div class="flex justify-center mt-8">
           <button
