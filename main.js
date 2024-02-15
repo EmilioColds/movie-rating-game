@@ -15,7 +15,7 @@ async function getAllMovieTitles() {
 }
 
 async function fetchMovieDetails(title) {
-  const apiUrl = `https://www.omdbapi.com/?apikey=e5316c1&t=${encodeURIComponent(
+  const apiUrl = `https://www.omdbapi.com/?apikey=ea016259&t=${encodeURIComponent(
     title
   )}`;
   try {
