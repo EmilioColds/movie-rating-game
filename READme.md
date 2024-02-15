@@ -31,7 +31,13 @@ THEN I will be redirected to that movie's trailer in a new window
 
 ## Visual Web Application
 
-![The Movie Rating Game app includes a page where two movies will be shown and the game will be played, a watchlist that will redirect you to a trailer in YouTube and a scoreboard.]()
+![The Movie Rating Game app includes a page where two movies will be shown and the game will be played, a watchlist that will redirect you to a trailer in YouTube and a scoreboard.](./Assets/Images/WebPageImages/Screenshot%202024-02-14%20at%203.44.52 p.m..png)
+
+![The Movie Rating Game app includes a page where two movies will be shown and the game will be played, a watchlist that will redirect you to a trailer in YouTube and a scoreboard.](./Assets/Images/WebPageImages/Screenshot%202024-02-14%20at%203.45.24 p.m..png)
+
+![The Movie Rating Game app includes a page where two movies will be shown and the game will be played, a watchlist that will redirect you to a trailer in YouTube and a scoreboard.](./Assets/Images/WebPageImages/Screenshot%202024-02-14%20at%203.46.46 p.m..png)
+
+![The Movie Rating Game app includes a page where two movies will be shown and the game will be played, a watchlist that will redirect you to a trailer in YouTube and a scoreboard.](./Assets/Images/WebPageImages/Screenshot%202024-02-14%20at%203.46.08 p.m..png)
 
 ## Link to app and repo
 
